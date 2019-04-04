@@ -3,12 +3,17 @@
     <transition name="fade" mode="out-in" appear>
       <Nav v-if="$route.meta.isNavShow"></Nav>
     </transition>
-    <transition name="fade" mode="out-in" appear>
-      <router-view :class="{topBlank:$route.meta.isNavShow}"/>
-    </transition>
-    <transition name="fade" mode="out-in" appear>
-      <my-foot v-if="$route.meta.isNavShow"></my-foot>
-    </transition>
+    <div style="height:100vh">
+      <el-scrollbar style="height:100%;">
+        <transition name="fade" mode="out-in" appear>
+          <router-view :class="{topBlank:$route.meta.isNavShow}"/>
+        </transition>
+        <transition name="fade" mode="out-in" appear>
+          <my-foot v-if="$route.meta.isNavShow"></my-foot>
+        </transition>
+      </el-scrollbar>
+    </div>
+    <div class="efont bgfun">You are not Alone</div>
   </div>
 </template>
 
@@ -176,7 +181,7 @@ body {
   font-weight: normal;
 }
 .topBlank {
-  margin-top: 10rem;
+  padding-top: 10rem;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -185,12 +190,24 @@ body {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-.pic-wrap{
+.pic-wrap {
   text-align: center;
-  width:100%;
+  width: 100%;
   overflow: hidden;
 }
-.pic-wrap img{
-  width: 50%
+.pic-wrap img {
+  width: 70%;
+}
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+.bgfun{
+  font-size: 8rem;
+  position: fixed;
+  bottom: 70px;
+  right: 50px;
+  z-index: -1;
+  color: #409eff;
+  opacity: 0.4;
 }
 </style>

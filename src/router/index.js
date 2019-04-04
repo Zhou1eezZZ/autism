@@ -5,6 +5,8 @@ import Login from '@/Login.vue'
 import SignIn from '@/SignIn.vue'
 import AboutASD from '@/AboutASD.vue'
 import News from '@/News'
+import SelfTest from '@/selfTest'
+import Games from '@/Games'
 
 Vue.use(Router)
 
@@ -46,6 +48,22 @@ export default new Router({
       path: '/News',
       name: 'News',
       component: News,
+      meta:{
+        isNavShow:true
+      }
+    },
+    {
+      path: '/SelfTest',
+      name: 'SelfTest',
+      component: SelfTest,
+      meta:{
+        isNavShow:true
+      }
+    },
+    {
+      path: '/Games',
+      name: 'Games',
+      component: Games,
       meta:{
         isNavShow:true
       }

@@ -26,7 +26,7 @@
       <el-input
         type="phone"
         placeholder="手机号"
-        prefix-icon="el-icon-goods"
+        prefix-icon="el-icon-mobile-phone"
         class="gap"
         v-model="phone"
       ></el-input>

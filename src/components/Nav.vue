@@ -9,7 +9,6 @@
           to="/"
           tag="li"
           :class="{active:isActive==='1',boldfont:true}"
-          @click.native="isActive='1'"
         >
           首页 /
           <span class="efont">Home</span>
@@ -18,16 +17,14 @@
           to="/News"
           tag="li"
           :class="{active:isActive==='2',boldfont:true}"
-          @click.native="isActive='2'"
         >
           资讯 /
           <span class="efont">Information</span>
         </router-link>
         <router-link
-          to="/"
+          to="/SelfTest"
           tag="li"
           :class="{active:isActive==='3',boldfont:true}"
-          @click.native="isActive='3'"
         >
           自测 /
           <span class="efont">self-test</span>
@@ -36,7 +33,6 @@
           to="/"
           tag="li"
           :class="{active:isActive==='4',boldfont:true}"
-          @click.native="isActive='4'"
         >
           游戏 /
           <span class="efont">Games</span>
@@ -58,8 +54,22 @@
 export default {
   data() {
     return {
-      isActive: "1"
-    };
+      //isActive: "1"
+    }
+  },
+  computed:{
+    isActive(){
+      switch (this.$route.name) {
+        case 'News':
+          return '2'
+        case 'SelfTest':
+          return '3'
+        case 'Games':
+          return '4'
+        default:
+          return '1'
+      }
+    }
   }
 };
 </script>

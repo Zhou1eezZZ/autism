@@ -2,8 +2,8 @@
   <div>
     <section>
       <el-row type="flex" justify="space-between" align="middle">
-        <el-col :span="1"></el-col>
-        <el-col :span="22">
+        <el-col :span="2"></el-col>
+        <el-col :span="20">
           <el-card :body-style="{ padding: '0rem'}" style="border-radius:1rem;height:100%">
             <img src="../static/images/homeCard.jpg" class="image">
             <div class="cardRight">
@@ -13,12 +13,12 @@
             </div>
           </el-card>
         </el-col>
-        <el-col :span="1"></el-col>
+        <el-col :span="2"></el-col>
       </el-row>
     </section>
     <section style="margin-top:4rem;">
       <h1 class="aboutTitle boldfont">关于本站</h1>
-      <el-row type="flex" justify="space-around" style="margin-top:2.5rem;">
+      <el-row type="flex" justify="space-around" style="margin-top:2.5rem;padding:0 4rem">
         <el-col :span="4" v-for="(data,index) in about" :key="index">
           <el-card class="aboutCard">
             <h1 class="boldfont" :style="{color:data.color}">{{data.userName}}</h1>
