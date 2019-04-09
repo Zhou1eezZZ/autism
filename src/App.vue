@@ -210,4 +210,30 @@ body {
   color: #409eff;
   opacity: 0.4;
 }
+body{
+  background-color: rgb(245,245,245,0.8)
+}
+.selfTestFormCARS .el-form-item__label{
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  font-size:2.4rem;
+}
+.selfTestFormCARS .el-radio{
+  white-space: normal;
+  text-align: left;
+  margin-left:0 !important;
+  width: 100%;
+  line-height: 2.4rem;
+  font-size: 1.8rem;
+}
+.selfTestFormCARS .el-radio__label{
+  font-size: 1.6rem;
+}
+.selfTestFormABC .el-form-item__label{
+  font-size: 1.8rem;
+}
+.selfTestFormABC .el-radio__label{
+  font-size: 1.8rem;
+}
 </style>

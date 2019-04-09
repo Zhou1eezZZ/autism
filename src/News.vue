@@ -103,9 +103,6 @@ export default {
   width: 100%;
   margin-top: 1rem;
 }
-.dialog {
-  /* padding: 2rem; */
-}
 .dialog p {
   text-align: left;
   font-size: 1.6rem;
