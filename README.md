@@ -1,6 +1,7 @@
 # autism
 
 > A Vue.js project
+> 作者的毕设项目，关于自闭症的一个网站。
 
 ## Build Setup
 
