@@ -54,7 +54,7 @@
             </div>
             <el-form
               ref="selfTestFormABC"
-              v-model="selfTestFormABC"
+              :model="selfTestFormABC"
               label-width="65%"
               label-position="left"
               class="selfTestFormABC"
@@ -158,7 +158,7 @@
                   <el-radio label="2">C.明显</el-radio>
                 </el-radio-group>
               </el-form-item>
-              <el-button type="primary">提交并查看结果</el-button>
+              <el-button type="primary" @click="submitFormABC">提交并查看结果</el-button>
             </el-form>
           </el-card>
           <el-card v-if="activeForm === '2'" key="card3">
@@ -174,7 +174,7 @@
             </div>
             <el-form
               ref="selfTestFormCARS"
-              v-model="selfTestFormCARS"
+              :model="selfTestFormCARS"
               label-position="top"
               class="selfTestFormCARS"
               style="margin:0 50px;"
@@ -343,8 +343,30 @@
                   <el-radio label="4">重度自闭症：孩子表现出许多自闭症状，或者表现出重度自闭。</el-radio>
                 </el-radio-group>
               </el-form-item>
-              <el-button type="primary">提交并查看结果</el-button>
+              <el-button type="primary" @click="submitFormCARS">提交并查看结果</el-button>
             </el-form>
+          </el-card>
+          <el-card v-if="activeForm === '3'" style="width:50%;margin-left:25%;margin-bottom:47vh">
+            <div v-if="loading" style="padding:6rem 4rem;">
+              <i style="font-size:4rem;color:#909399;" class="el-icon-loading"></i>
+              <p style="font-size:2.4rem;margin-top:2rem;">分析中，请稍后</p>
+            </div>
+            <div v-if="!loading" style="padding:4rem 4rem;">
+              <p style="font-size:1.8rem;line-height:2.4rem">本次得分：{{score}}</p>
+              <p style="font-size:1.8rem;line-height:2.4rem;margin:2rem 0;">诊断结果:<span v-if="score<14">被测者<span style="font-weight:bold;color: #409eff;">没有</span>孤独症倾向</span><span v-else>被测者<span style="font-weight:bold;color: #F56C6C;">有</span>孤独症倾向，建议到机构做进一步的检查。</span></p>
+              <el-button type="primary" plain @click="activeForm = '0'">返回</el-button>
+            </div>
+          </el-card>
+          <el-card v-if="activeForm === '4'" style="width:50%;margin-left:25%;margin-bottom:47vh">
+            <div v-if="loading" style="padding:6rem 4rem;">
+              <i style="font-size:4rem;color:#909399;" class="el-icon-loading"></i>
+              <p style="font-size:2.4rem;margin-top:2rem;">分析中，请稍后</p>
+            </div>
+            <div v-if="!loading" style="padding:4rem 4rem;">
+              <p style="font-size:1.8rem;line-height:2.4rem">本次得分：{{score}}</p>
+              <p style="font-size:1.8rem;line-height:2.4rem;margin:2rem 0;">诊断结果:<span v-if="score<30">被测者<span style="font-weight:bold;color: #409eff;">没有</span>孤独症倾向</span><span v-else-if="score<=36 && score>=30">被测者<span style="font-weight:bold;color: #F56C6C;">有轻微或中度</span>孤独症倾向，请到机构做进一步的康复检查。</span><span v-else>被测者<span style="font-weight:bold;color: #F56C6C;">有重度孤独症</span>，建议立马到相关机构进行专业治疗。</span></p>
+              <el-button type="primary" plain @click="activeForm = '0'">返回</el-button>
+            </div>
           </el-card>
         </transition>
       </el-col>
@@ -371,8 +393,56 @@ export default {
     return {
       selfTestFormABC: {},
       selfTestFormCARS: {},
-      activeForm: "0"
+      activeForm: "0",
+      loading:false,
+      score:null
     };
+  },
+  methods:{
+    submitFormABC(){
+      // debugger
+      if(Object.getOwnPropertyNames(this.selfTestFormABC).length<14){
+        this.$message({
+          message:'您有题目遗漏，请全部完成再提交',
+          type:'warning'
+        })
+        return
+      }else{
+        this.activeForm = '3'
+        this.score = 0
+        for(let i in this.selfTestFormABC){
+          this.score += parseInt(this.selfTestFormABC[i])
+        }
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+        }, 3000);
+        this.$refs.selfTestFormABC.resetFields()
+        console.log(this.$refs.selfTestFormABC)
+      }
+    },
+    submitFormCARS(){
+      // debugger
+      if(Object.getOwnPropertyNames(this.selfTestFormCARS).length<15){
+        this.$message({
+          message:'您有题目遗漏，请全部完成再提交',
+          type:'warning'
+        })
+        return
+      }else{
+        this.activeForm = '4'
+        this.score = 0
+        for(let i in this.selfTestFormCARS){
+          this.score += parseInt(this.selfTestFormCARS[i])
+        }
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+        }, 3000);
+        this.$refs.selfTestFormCARS.resetFields()
+        console.log(this.$refs.selfTestFormCARS)
+      }
+    }
   }
 };
 </script>
