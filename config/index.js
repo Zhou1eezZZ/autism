@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite:{
           '^/api': ''
         }
+      },
+      '/userAPI':{
+        target:'http://62.234.41.45:8080/autism-0.0.1-SNAPSHOT',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/userAPI':''
+        }
       }
     },
 

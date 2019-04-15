@@ -42,8 +42,8 @@
     <el-col :span="4">
       <div v-if="!$store.state.islogin">
         <ul class="nav-log-block">
-          <router-link to="/Login" tag="li" class="boldfont">登录</router-link>
-          <router-link to="/SignIn" tag="li" class="boldfont">注册</router-link>
+          <router-link to="/SignIn" tag="li" class="boldfont">登录</router-link>
+          <router-link to="/Login" tag="li" class="boldfont">注册</router-link>
         </ul>
       </div>
     </el-col>
