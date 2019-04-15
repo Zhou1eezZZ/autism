@@ -472,9 +472,9 @@ export default {
   clear: both;
 }
 .tipCard{
-  width: 10%;
+  width: 10vw;
   position: fixed;
-  right: 4%;
+  right: 4vw;
   top: 10rem;
   z-index: 10;
   font-size: 1.4rem;
