@@ -30,7 +30,7 @@
           <span class="efont">self-test</span>
         </router-link>
         <router-link
-          to="/"
+          to="/Games"
           tag="li"
           :class="{active:isActive==='4',boldfont:true}"
         >
