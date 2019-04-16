@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function userSignUp(data){//注册
     return request({
-        url:`/userAPI/user/addUser`,
+        url:`/autismAPI/user/addUser`,
         method:'post',
         data
     })
@@ -10,7 +10,7 @@ export function userSignUp(data){//注册
 
 export function userDelete(id){
     return request({
-        url:`/userAPI/user/delete?uuid=${id}`,
+        url:`/autismAPI/user/delete?uuid=${id}`,
         method:'delete',
         
     })
@@ -18,15 +18,15 @@ export function userDelete(id){
 
 export function getUserInfo(data){
     return request({
-        url:`/userAPI/user/getUserList`,
+        url:`/autismAPI/user/getUserList`,
         method:'get',
-        parama:data //get请求用parama
+        params:data //get请求用parama
     })
 }
 
 export function userLogin(data){//登录
     return request({
-        url:`/userAPI/user/login`,
+        url:`/autismAPI/user/login`,
         method:'post',
         data
     })
@@ -34,7 +34,7 @@ export function userLogin(data){//登录
 
 export function userUpdate(data){
     return request({
-        url:`/userAPI/user/update`,
+        url:`/autismAPI/user/update`,
         method:'put',
         data
     })
