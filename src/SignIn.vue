@@ -4,7 +4,7 @@
     <el-col :span="6">
       <h1 class="logo efont">AUTISM</h1>
       <el-input
-        placeholder="用户名"
+        placeholder="请输入账号"
         prefix-icon="el-icon-mobile-phone"
         class="gap"
         v-model="accountNum"
@@ -14,29 +14,13 @@
         placeholder="请输入密码"
         prefix-icon="el-icon-goods"
         class="gap"
+        clearable
         v-model="password"
       ></el-input>
-      <el-input
-        type="password"
-        placeholder="请确认密码"
-        prefix-icon="el-icon-goods"
-        class="gap"
-        v-model="passwordConfirm"
-      ></el-input>
-      <el-input
-        type="phone"
-        placeholder="手机号"
-        prefix-icon="el-icon-mobile-phone"
-        class="gap"
-        v-model="phone"
-      ></el-input>
       <div style="width:100%" class="gap">
-        <p style="float:left">点击"注册"代表您同意遵守
-          <i style="text-decoration:underline">用户协议</i>
-        </p>
-        <router-link to="/Login" tag="p" class="tips">已有账号?</router-link>
+        <router-link to="/Login" tag="p" class="tips">没有账号?</router-link>
       </div>
-      <el-button type="primary" round style="width:45%" class="gap">注册</el-button>
+      <el-button type="primary" round style="width:45%" class="gap">登录</el-button>
       <el-button round style="width:45%" class="gap" @click="backHome">返回首页</el-button>
     </el-col>
     <el-col :span="4"></el-col>
@@ -48,10 +32,8 @@ export default {
   data() {
     return {
       accountNum: "",
-      password: "",
-      passwordConfirm: "",
-      phone: ""
-    }
+      password: ""
+    };
   },
   methods:{
     backHome(){
