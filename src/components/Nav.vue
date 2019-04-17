@@ -46,7 +46,15 @@
           <router-link to="/Login" tag="li" class="boldfont">注册</router-link>
         </ul>
       </div>
-      <div v-else class="efont" style="font-size:1.4rem"><span class="link-type">{{$store.state.user.name}}</span>▾</div>
+      <div v-else class="efont" style="font-size:1.4rem">
+        <el-dropdown>
+          <span class="link-type">{{$store.state.user.name}}</span>▾
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item divided @click.native="logOut">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </el-col>
   </el-row>
 </template>
@@ -71,6 +79,17 @@ export default {
           return '1'
       }
     }
+  },
+  methods:{
+    logOut(){
+      this.$store.dispatch('user/FedLogOut').then( () => {
+        this.$message({
+            type:'success',
+            message: '成功退出登录',
+            duration:1000
+        })
+      })
+    }
   }
 };
 </script>
@@ -91,7 +110,7 @@ export default {
   font-size: 3.2rem;
   color: #409eff;
 }
-ul li {
+.nav-block li,.nav-log-block li {
   float: left;
   font-size: 1.8rem;
 }
