@@ -18,18 +18,18 @@
 </template>
 
 <script>
-import Nav from "./components/Nav";
-import MyFoot from "./components/footer";
+import Nav from './components/Nav'
+import MyFoot from './components/footer'
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Nav: Nav,
     MyFoot: MyFoot
   },
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style>

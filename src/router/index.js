@@ -16,56 +16,56 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      meta:{
-        isNavShow:true
+      meta: {
+        isNavShow: true
       }
     },
     {
       path: '/Login',
       name: 'Login',
       component: Login,
-      meta:{
-        isNavShow:false
+      meta: {
+        isNavShow: false
       }
     },
     {
       path: '/SignIn',
       name: 'SignIn',
       component: SignIn,
-      meta:{
-        isNavShow:false
+      meta: {
+        isNavShow: false
       }
     },
     {
       path: '/AboutASD',
       name: 'AboutASD',
       component: AboutASD,
-      meta:{
-        isNavShow:true
+      meta: {
+        isNavShow: true
       }
     },
     {
       path: '/News',
       name: 'News',
       component: News,
-      meta:{
-        isNavShow:true
+      meta: {
+        isNavShow: true
       }
     },
     {
       path: '/SelfTest',
       name: 'SelfTest',
       component: SelfTest,
-      meta:{
-        isNavShow:true
+      meta: {
+        isNavShow: true
       }
     },
     {
       path: '/Games',
       name: 'Games',
       component: Games,
-      meta:{
-        isNavShow:true
+      meta: {
+        isNavShow: true
       }
     }
   ]

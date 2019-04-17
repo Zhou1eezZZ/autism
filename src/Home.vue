@@ -42,41 +42,41 @@ export default {
     return {
       about: [
         {
-          userName: "普通用户",
+          userName: '普通用户',
           detail:
-            "我们为普通用户提供ASD相关的知识普及、量表自测等服务。确保用户能在第一时间收到关于自闭症的最新消息。",
-          color: "#909399"
+            '我们为普通用户提供ASD相关的知识普及、量表自测等服务。确保用户能在第一时间收到关于自闭症的最新消息。',
+          color: '#909399'
         },
         {
-          userName: "ASD儿童",
+          userName: 'ASD儿童',
           detail:
-            "我们为ASD儿童提供了辅助治疗的游戏介绍和游戏的入口。这些游戏采用寓教于乐的游戏形式，让用户在游戏过程中能够接受一些信息，得到训练或者治疗。",
-          color: "#67C23A"
+            '我们为ASD儿童提供了辅助治疗的游戏介绍和游戏的入口。这些游戏采用寓教于乐的游戏形式，让用户在游戏过程中能够接受一些信息，得到训练或者治疗。',
+          color: '#67C23A'
         },
         {
-          userName: "家长",
+          userName: '家长',
           detail:
-            "我们为家长用户提供了对应ASD儿童的干预情况总结和分析，让家长能第一时间全面的了解到自己孩子的病症情况。",
-          color: "#E6A23C"
+            '我们为家长用户提供了对应ASD儿童的干预情况总结和分析，让家长能第一时间全面的了解到自己孩子的病症情况。',
+          color: '#E6A23C'
         },
         {
-          userName: "治疗师",
+          userName: '治疗师',
           detail:
-            "我们为治疗师提供其治疗对象的基本信息和干预进展总结，以及对其工作的若干辅助功能。提升了治疗师辅助治疗效率的同时也方便治疗师与家长之间的信息互通。",
-          color: "#F56C6C"
+            '我们为治疗师提供其治疗对象的基本信息和干预进展总结，以及对其工作的若干辅助功能。提升了治疗师辅助治疗效率的同时也方便治疗师与家长之间的信息互通。',
+          color: '#F56C6C'
         }
       ]
-    };
+    }
   },
   methods: {
-    signIn(){
-      this.$router.push({ path:'/SignIn' })
+    signIn() {
+      this.$router.push({ path: '/SignIn' })
     },
-    toAboutASD(){
-      this.$router.push({ path:'/AboutASD' })
+    toAboutASD() {
+      this.$router.push({ path: '/AboutASD' })
     }
   }
-};
+}
 </script>
 
 <style scoped>

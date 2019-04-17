@@ -1,34 +1,34 @@
 import request from '@/utils/request'
 
-export function addDept(data){
+export function addDept(data) {
   return request({
-      url:`/autismAPI/dept/addDept`,
-      method:'post',
-      data
+    url: `/autismAPI/dept/addDept`,
+    method: 'post',
+    data
   })
 }
 
-export function delDept(data){
+export function delDept(data) {
   return request({
-      url:`/autismAPI/dept/delDept?uuid=${data.uuid}`,
-      method:'delete',
-      data
+    url: `/autismAPI/dept/delDept?uuid=${data.uuid}`,
+    method: 'delete',
+    data
   })
 }
 
-export function getDept(data){
+export function getDept(data) {
   return request({
-      url:`/autismAPI/dept/getDept`,
-      method:'get',
-      params:data
+    url: `/autismAPI/dept/getDept`,
+    method: 'get',
+    params: data
   })
 }
 
-export function updateDept(data){
+export function updateDept(data) {
   return request({
-      url:`/autismAPI/dept/update`,
-      method:'put',
-      data
+    url: `/autismAPI/dept/update`,
+    method: 'put',
+    data
   })
 }
 

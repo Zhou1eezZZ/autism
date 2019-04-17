@@ -1,33 +1,33 @@
 import request from '@/utils/request'
 
-export function addGame(data){
+export function addGame(data) {
   return request({
-    url:`/autismAPI/game/addGame`,
-    method:'post',
+    url: `/autismAPI/game/addGame`,
+    method: 'post',
     data
   })
 }
 
-export function delGame(data){
+export function delGame(data) {
   return request({
-    url:`/autismAPI/game/delGame?uuid=${data.uuid}`,
-    method:'delete',
+    url: `/autismAPI/game/delGame?uuid=${data.uuid}`,
+    method: 'delete',
     data
   })
 }
 
-export function getGames(data){
+export function getGames(data) {
   return request({
-    url:`/autismAPI/game/getGames`,
-    method:'get',
-    params:data
+    url: `/autismAPI/game/getGames`,
+    method: 'get',
+    params: data
   })
 }
 
-export function updateGame(data){
+export function updateGame(data) {
   return request({
-    url:`/autismAPI/game/updateGame`,
-    method:'put',
+    url: `/autismAPI/game/updateGame`,
+    method: 'put',
     data
   })
 }

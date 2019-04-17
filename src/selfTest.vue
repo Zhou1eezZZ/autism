@@ -393,58 +393,58 @@ export default {
     return {
       selfTestFormABC: {},
       selfTestFormCARS: {},
-      activeForm: "0",
-      loading:false,
-      score:null
-    };
+      activeForm: '0',
+      loading: false,
+      score: null
+    }
   },
-  methods:{
-    submitFormABC(){
+  methods: {
+    submitFormABC() {
       // debugger
-      if(Object.getOwnPropertyNames(this.selfTestFormABC).length<14){
+      if (Object.getOwnPropertyNames(this.selfTestFormABC).length < 14) {
         this.$message({
-          message:'您有题目遗漏，请全部完成再提交',
-          type:'warning'
+          message: '您有题目遗漏，请全部完成再提交',
+          type: 'warning'
         })
         return
-      }else{
+      } else {
         this.activeForm = '3'
         this.score = 0
-        for(let i in this.selfTestFormABC){
+        for (const i in this.selfTestFormABC) {
           this.score += parseInt(this.selfTestFormABC[i])
         }
         this.loading = true
         setTimeout(() => {
           this.loading = false
-        }, 3000);
+        }, 3000)
         this.$refs.selfTestFormABC.resetFields()
         console.log(this.$refs.selfTestFormABC)
       }
     },
-    submitFormCARS(){
+    submitFormCARS() {
       // debugger
-      if(Object.getOwnPropertyNames(this.selfTestFormCARS).length<15){
+      if (Object.getOwnPropertyNames(this.selfTestFormCARS).length < 15) {
         this.$message({
-          message:'您有题目遗漏，请全部完成再提交',
-          type:'warning'
+          message: '您有题目遗漏，请全部完成再提交',
+          type: 'warning'
         })
         return
-      }else{
+      } else {
         this.activeForm = '4'
         this.score = 0
-        for(let i in this.selfTestFormCARS){
+        for (const i in this.selfTestFormCARS) {
           this.score += parseInt(this.selfTestFormCARS[i])
         }
         this.loading = true
         setTimeout(() => {
           this.loading = false
-        }, 3000);
+        }, 3000)
         this.$refs.selfTestFormCARS.resetFields()
         console.log(this.$refs.selfTestFormCARS)
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

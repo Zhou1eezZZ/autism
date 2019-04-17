@@ -42,52 +42,52 @@
   </div>
 </template>
 <script>
-import { fetchNews } from "@/api/news";
+import { fetchNews } from '@/api/news'
 export default {
   data() {
     return {
       newsList: [],
       isShow: false,
       showNews: null
-    };
+    }
   },
   created() {
-    const vm = this;
+    const vm = this
     fetchNews().then(response => {
       if (
         response.status === 200 &&
-        response.data.msg === "ok" &&
+        response.data.msg === 'ok' &&
         response.data.result.list
       ) {
-        vm.newsList = response.data.result.list;
+        vm.newsList = response.data.result.list
         vm.$message({
           showClose: true,
-          type: "success",
-          title: "加载新闻成功",
-          message: "加载新闻成功"
-        });
+          type: 'success',
+          title: '加载新闻成功',
+          message: '加载新闻成功'
+        })
       } else {
         vm.$message({
           showClose: true,
-          type: "error",
-          title: "加载新闻失败",
-          message: "加载新闻失败"
-        });
+          type: 'error',
+          title: '加载新闻失败',
+          message: '加载新闻失败'
+        })
       }
-      console.log(response);
-    });
+      console.log(response)
+    })
   },
   methods: {
     showNewsDetail(n) {
-      this.isShow = true;
-      this.showNews = n;
+      this.isShow = true
+      this.showNews = n
     },
     handleClose() {
-      this.isShow = false;
-      this.showNews = null;
+      this.isShow = false
+      this.showNews = null
     }
   }
-};
+}
 </script>
 <style scoped>
 .title {

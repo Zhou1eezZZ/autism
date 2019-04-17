@@ -14,8 +14,8 @@ service.interceptors.request.use(
   config => {
     // Do something before request is sent
     config.headers = {
-      'Access-Control-Allow-Origin': '*',  
-      'Content-Type': 'application/json',  
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
     }
     if (store.getters.token) {
       // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
@@ -72,7 +72,7 @@ service.interceptors.response.use(
       message: error.message,
       type: 'error',
       duration: 5 * 1000,
-      showClose:true
+      showClose: true
     })
     return Promise.reject(error)
   }

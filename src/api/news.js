@@ -6,8 +6,8 @@ export function fetchNews() {
     url: '/api/search',
     method: 'get',
     params: {
-      appkey:appKey,
-      keyword:'自闭症'
+      appkey: appKey,
+      keyword: '自闭症'
     }
   })
 }

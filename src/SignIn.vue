@@ -40,33 +40,33 @@ export default {
     return {
       rules: {},
       data: {
-        phone:'',
-        password:'',
-        type:'1'
+        phone: '',
+        password: '',
+        type: '1'
       }
-    };
+    }
   },
-  created(){
+  created() {
     console.log(this.$store)
   },
   methods: {
     backHome() {
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: '/' })
     },
-    signIn(){
-      this.$store.dispatch('user/LoginByPhone',this.data).then(response => {
-        if(response && response.data && response.data.successful){
+    signIn() {
+      this.$store.dispatch('user/LoginByPhone', this.data).then(response => {
+        if (response && response.data && response.data.successful) {
           this.$message({
-            type:'success',
+            type: 'success',
             message: '登录成功',
-            duration:1000
+            duration: 1000
           })
-          this.$router.push({path:'/'})
+          this.$router.push({ path: '/' })
         }
       })
     }
   }
-};
+}
 </script>
 
 

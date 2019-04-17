@@ -63,11 +63,11 @@
 export default {
   data() {
     return {
-      //isActive: "1"
+      // isActive: "1"
     }
   },
-  computed:{
-    isActive(){
+  computed: {
+    isActive() {
       switch (this.$route.name) {
         case 'News':
           return '2'
@@ -80,18 +80,18 @@ export default {
       }
     }
   },
-  methods:{
-    logOut(){
-      this.$store.dispatch('user/FedLogOut').then( () => {
+  methods: {
+    logOut() {
+      this.$store.dispatch('user/FedLogOut').then(() => {
         this.$message({
-            type:'success',
-            message: '成功退出登录',
-            duration:1000
+          type: 'success',
+          message: '成功退出登录',
+          duration: 1000
         })
       })
     }
   }
-};
+}
 </script>
 
 <style scoped>

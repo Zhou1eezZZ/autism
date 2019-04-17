@@ -49,31 +49,31 @@ import UserAPI from '@/api/user'
 export default {
   data() {
     return {
-      accountNum: "",
-      password: "",
-      passwordConfirm: "",
-      phone: ""
+      accountNum: '',
+      password: '',
+      passwordConfirm: '',
+      phone: ''
     }
   },
-  methods:{
-    backHome(){
-      this.$router.push({path:'/'})
+  methods: {
+    backHome() {
+      this.$router.push({ path: '/' })
     },
-    signUp(){
-      const vm = this
+    signUp() {
+      // const vm = this
       const data = {
-        name:this.accountNum,
-        password:this.password,
-        phone:this.phone
+        name: this.accountNum,
+        password: this.password,
+        phone: this.phone
       }
       UserAPI.userSignUp(data).then(respone => {
-        if(respone && respone.data){
+        if (respone && respone.data) {
           debugger
         }
       })
     }
   }
-};
+}
 </script>
 
 

@@ -19,16 +19,16 @@
 <script>
 import GameAPI from '@/api/game'
 export default {
-  data(){
+  data() {
     return {
-      gameList:[]
+      gameList: []
     }
   },
-  created(){
+  created() {
     this.getGameList()
   },
-  methods:{
-    playGame(url){
+  methods: {
+    playGame(url) {
       console.log(url)
       const link = document.createElement('a')
       link.style.display = 'none'
@@ -38,17 +38,17 @@ export default {
       link.click()
       link.remove()
     },
-    getGameList(){
+    getGameList() {
       const vm = this
       GameAPI.getGames().then(response => {
-        if(response && response.data && response.data.successful){
+        if (response && response.data && response.data.successful) {
           // debugger
           vm.gameList = response.data.data.list
-        }else{
+        } else {
           vm.$message({
-            title:'游戏列表查询失败',
-            message:response.data.statusMessage,
-            type:'error'
+            title: '游戏列表查询失败',
+            message: response.data.statusMessage,
+            type: 'error'
           })
         }
       })
