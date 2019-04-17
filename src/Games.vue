@@ -4,10 +4,11 @@
         <el-col :span="4"></el-col>
         <el-col :span="16" class="waterfull">
           <el-card v-for="(i,index) in gameList" :key="index" class="gameCard">
-            <img :src="i.img" class="image">
-            <h1 class="efont">{{i.name}}</h1>
-            <p>{{i.summary}}</p>
-            <el-button type="primary" style="margin-top:1.6rem" class="efont" @click="playGame(i.url)">PLAY NOW</el-button>
+              <img :src="i.img" class="image">
+              <h1 class="efont">{{i.name}}</h1>
+              <p>{{i.summary}}</p>
+              <el-button v-if="i.name !== 'Autism Games'" type="primary" style="margin-top:1.6rem" class="efont" @click="playGame(i.url)">PLAY NOW</el-button>
+              <el-button v-else type="primary" style="margin-top:1.6rem" class="efont" @click="playGame(i.url)">VIEW NOW</el-button>
           </el-card>
         </el-col>
         <el-col :span="4"></el-col>
