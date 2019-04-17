@@ -10,6 +10,13 @@
         v-model="accountNum"
       ></el-input>
       <el-input
+        type="phone"
+        placeholder="手机号"
+        prefix-icon="el-icon-mobile-phone"
+        class="gap"
+        v-model="phone"
+      ></el-input>
+      <el-input
         type="password"
         placeholder="请输入密码"
         prefix-icon="el-icon-goods"
@@ -22,13 +29,6 @@
         prefix-icon="el-icon-goods"
         class="gap"
         v-model="passwordConfirm"
-      ></el-input>
-      <el-input
-        type="phone"
-        placeholder="手机号"
-        prefix-icon="el-icon-mobile-phone"
-        class="gap"
-        v-model="phone"
       ></el-input>
       <div style="width:100%" class="gap">
         <p style="float:left">点击"注册"代表您同意遵守

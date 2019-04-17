@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row type="flex" justify="space-between" align="middle" style="margin-top:10rem">
+    <el-row type="flex" justify="space-between" align="middle">
       <el-col :span="2"></el-col>
       <el-col :span="20">
         <div class="crumb">

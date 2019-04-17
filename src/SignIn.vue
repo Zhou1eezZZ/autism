@@ -3,24 +3,31 @@
     <el-col :span="4"></el-col>
     <el-col :span="6">
       <h1 class="logo efont">AUTISM</h1>
-      <el-input
-        placeholder="请输入账号"
-        prefix-icon="el-icon-mobile-phone"
-        class="gap"
-        v-model="accountNum"
-      ></el-input>
-      <el-input
-        type="password"
-        placeholder="请输入密码"
-        prefix-icon="el-icon-goods"
-        class="gap"
-        clearable
-        v-model="password"
-      ></el-input>
+      <el-form ref="signInData" :rules="rules" :model="data">
+        <el-form-item prop="phone">
+          <el-input
+            placeholder="请输入手机号"
+            prefix-icon="el-icon-mobile-phone"
+            class="gap"
+            v-model="data.phone"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input
+            type="password"
+            placeholder="请输入密码"
+            prefix-icon="el-icon-goods"
+            
+            clearable
+            v-model="data.password"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+
       <div style="width:100%" class="gap">
         <router-link to="/Login" tag="p" class="tips">没有账号?</router-link>
       </div>
-      <el-button type="primary" round style="width:45%" class="gap">登录</el-button>
+      <el-button type="primary" round style="width:45%" class="gap" @click="signIn">登录</el-button>
       <el-button round style="width:45%" class="gap" @click="backHome">返回首页</el-button>
     </el-col>
     <el-col :span="4"></el-col>
@@ -31,13 +38,32 @@
 export default {
   data() {
     return {
-      accountNum: "",
-      password: ""
+      rules: {},
+      data: {
+        phone:'',
+        password:'',
+        type:'1'
+      }
     };
   },
-  methods:{
-    backHome(){
-      this.$router.push({path:'/'})
+  created(){
+    console.log(this.$store)
+  },
+  methods: {
+    backHome() {
+      this.$router.push({ path: "/" });
+    },
+    signIn(){
+      this.$store.dispatch('user/LoginByPhone',this.data).then(response => {
+        if(response && response.data && response.data.successful){
+          this.$message({
+            type:'success',
+            message: '登录成功',
+            duration:1000
+          })
+          this.$router.push({path:'/'})
+        }
+      })
     }
   }
 };

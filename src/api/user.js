@@ -26,7 +26,7 @@ export function getUserInfo(data){
 
 export function userLogin(data){//登录
     return request({
-        url:`/autismAPI/user/login`,
+        url:`/autismAPI/user/login?phone=${data.phone}&password=${data.password}&type=${data.type}`,
         method:'post',
         data
     })

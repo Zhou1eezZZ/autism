@@ -40,12 +40,13 @@
       </ul>
     </el-col>
     <el-col :span="4">
-      <div v-if="!$store.state.islogin">
+      <div v-if="!$store.state.user.isLogin">
         <ul class="nav-log-block">
           <router-link to="/SignIn" tag="li" class="boldfont">登录</router-link>
           <router-link to="/Login" tag="li" class="boldfont">注册</router-link>
         </ul>
       </div>
+      <div v-else class="efont" style="font-size:1.4rem"><span class="link-type">{{$store.state.user.name}}</span>▾</div>
     </el-col>
   </el-row>
 </template>

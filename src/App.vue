@@ -236,4 +236,10 @@ body{
 .selfTestFormABC .el-radio__label{
   font-size: 1.8rem;
 }
+.link-type{
+  cursor: pointer;
+}
+.link-type:hover{
+  color: #409eff;
+}
 </style>
