@@ -11,18 +11,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{
-        target:'http://api.jisuapi.com/news',
-        changeOrigin:true,
-        pathRewrite:{
+      '/api': {
+        target: 'http://api.jisuapi.com',
+        changeOrigin: true,
+        pathRewrite: {
           '^/api': ''
         }
       },
-      '/autismAPI':{
-        target:'http://62.234.41.45:8080/autism-0.0.1-SNAPSHOT',
-        changeOrigin:true,
-        pathRewrite:{
-          '^/autismAPI':''
+      '/autismAPI': {
+        target: 'http://62.234.41.45:8080/autism-0.0.1-SNAPSHOT',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/autismAPI': ''
         }
       }
     },
@@ -38,7 +38,7 @@ module.exports = {
     useEslint: true,
 
     showEslintErrorsInOverlay: false,
-    
+
     /**
      * Source Maps
      */

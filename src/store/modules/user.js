@@ -14,7 +14,8 @@ const state = {
   sex: '',
   type: '',
   uuid: '',
-  workTime: ''
+  workTime: '',
+  ip: ''
 }
 
 const getters = {
@@ -63,6 +64,9 @@ const mutations = {
   },
   SET_WORKTIME: (state, workTime) => {
     state.workTime = workTime
+  },
+  SET_IP: (state, ip) => {
+    state.ip = ip
   }
 }
 

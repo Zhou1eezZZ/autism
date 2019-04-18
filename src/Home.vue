@@ -2,29 +2,43 @@
   <div>
     <section>
       <el-row type="flex" justify="space-between" align="middle">
-        <el-col :span="2"></el-col>
-        <el-col :span="20">
-          <el-card :body-style="{ padding: '0rem'}" style="border-radius:1rem;height:100%">
-            <img src="../static/images/homeCard.jpg" class="image">
+        <el-col :span="4"></el-col>
+        <el-col :span="16">
+          <el-card :body-style="{ padding: '0rem'}" style="border-radius:1rem;height:100%;height:35vh">
+            <div style="width:55%;overflow:hidden;float: left;">
+              <img src="../static/images/homeCard.jpg" class="image">
+            </div>
+            
             <div class="cardRight">
               <h1>什么是自闭症？</h1>
               <p>自闭症谱系障碍(ASD)是一种广泛性发育障碍，具体表现为社交沟通和社会交往缺陷与局限重复的行为、兴趣或活动。</p>
-              <el-button class="font" type="primary" style="margin-top:5%" @click="toAboutASD()">了解更多关于自闭症的信息</el-button>
+              <el-button
+                class="font"
+                type="primary"
+                style="margin-top:5%"
+                @click="toAboutASD()"
+              >了解更多关于自闭症的信息</el-button>
             </div>
           </el-card>
         </el-col>
-        <el-col :span="2"></el-col>
+        <el-col :span="4"></el-col>
       </el-row>
     </section>
     <section style="margin-top:4rem;">
       <h1 class="aboutTitle boldfont">关于本站</h1>
-      <el-row type="flex" justify="space-around" style="margin-top:2.5rem;padding:0 4rem">
-        <el-col :span="4" v-for="(data,index) in about" :key="index">
-          <el-card class="aboutCard">
-            <h1 class="boldfont" :style="{color:data.color}">{{data.userName}}</h1>
-            <p>{{data.detail}}</p>
-          </el-card>
+      <el-row type="flex" justify="space-between" style="margin-top:2.5rem">
+        <el-col :span="4"></el-col>
+        <el-col :span="16">
+          <el-row type="flex" justify="space-between">
+            <el-col :span="5" v-for="(data,index) in about" :key="index">
+              <el-card class="aboutCard">
+                <h1 class="boldfont" :style="{color:data.color}">{{data.userName}}</h1>
+                <p>{{data.detail}}</p>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-col>
+        <el-col :span="4"></el-col>
       </el-row>
       <el-button
         type="primary"
@@ -68,6 +82,15 @@ export default {
       ]
     }
   },
+  components: {
+    //
+  },
+  created() {
+    this.$store.commit('user/SET_IP', returnCitySN['cip'])// 通过引入的搜狐js代码片段获取用户的ip
+    this.$store.dispatch('weather/setWeather', this.$store.state.user.ip).then(() => {
+      console.log('天气加载成功')
+    })
+  },
   methods: {
     signIn() {
       this.$router.push({ path: '/SignIn' })
@@ -81,21 +104,20 @@ export default {
 
 <style scoped>
 .image {
-  float: left;
-  height: 100%;
-  width: 55%;
+  width: 100%;
+  height: 35vh;
 }
 .cardRight {
   width: 45%;
-  float: right;
+  float: left;
   overflow: hidden;
-  padding: 2.5rem;
+  height: 30vh;
   box-sizing: border-box;
 }
 .cardRight h1 {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: bold;
-  margin-top: 5%;
+  margin-top: 6vh;
 }
 .cardRight p {
   width: 50%;

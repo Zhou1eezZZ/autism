@@ -42,7 +42,7 @@
   </div>
 </template>
 <script>
-import { fetchNews } from '@/api/news'
+import { fetchNews } from '@/api/jisuAPI'
 export default {
   data() {
     return {

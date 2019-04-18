@@ -7,6 +7,7 @@ import AboutASD from '@/AboutASD.vue'
 import News from '@/News'
 import SelfTest from '@/selfTest'
 import Games from '@/Games'
+import UserCenter from '@/UserCenter'
 
 Vue.use(Router)
 
@@ -17,7 +18,8 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: {
-        isNavShow: true
+        isNavShow: true,
+        isCenter: false
       }
     },
     {
@@ -25,7 +27,8 @@ export default new Router({
       name: 'Login',
       component: Login,
       meta: {
-        isNavShow: false
+        isNavShow: false,
+        isCenter: false
       }
     },
     {
@@ -33,7 +36,8 @@ export default new Router({
       name: 'SignIn',
       component: SignIn,
       meta: {
-        isNavShow: false
+        isNavShow: false,
+        isCenter: false
       }
     },
     {
@@ -41,7 +45,8 @@ export default new Router({
       name: 'AboutASD',
       component: AboutASD,
       meta: {
-        isNavShow: true
+        isNavShow: true,
+        isCenter: false
       }
     },
     {
@@ -49,7 +54,8 @@ export default new Router({
       name: 'News',
       component: News,
       meta: {
-        isNavShow: true
+        isNavShow: true,
+        isCenter: false
       }
     },
     {
@@ -57,7 +63,8 @@ export default new Router({
       name: 'SelfTest',
       component: SelfTest,
       meta: {
-        isNavShow: true
+        isNavShow: true,
+        isCenter: false
       }
     },
     {
@@ -65,7 +72,17 @@ export default new Router({
       name: 'Games',
       component: Games,
       meta: {
-        isNavShow: true
+        isNavShow: true,
+        isCenter: false
+      }
+    },
+    {
+      path: '/UserCenter',
+      name: 'UserCenter',
+      component: UserCenter,
+      meta: {
+        isNavShow: true,
+        isCenter: true
       }
     }
   ]

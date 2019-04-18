@@ -4,40 +4,25 @@
       <h1 class="logo efont">AUTISM</h1>
     </el-col>
     <el-col :span="14">
-      <ul class="nav-block">
-        <router-link
-          to="/"
-          tag="li"
-          :class="{active:isActive==='1',boldfont:true}"
-        >
+      <ul v-if="!$route.meta.isCenter" class="nav-block">
+        <router-link to="/" tag="li" :class="{active:isActive==='1',boldfont:true}">
           首页 /
           <span class="efont">Home</span>
         </router-link>
-        <router-link
-          to="/News"
-          tag="li"
-          :class="{active:isActive==='2',boldfont:true}"
-        >
+        <router-link to="/News" tag="li" :class="{active:isActive==='2',boldfont:true}">
           资讯 /
           <span class="efont">Information</span>
         </router-link>
-        <router-link
-          to="/SelfTest"
-          tag="li"
-          :class="{active:isActive==='3',boldfont:true}"
-        >
+        <router-link to="/SelfTest" tag="li" :class="{active:isActive==='3',boldfont:true}">
           自测 /
           <span class="efont">self-test</span>
         </router-link>
-        <router-link
-          to="/Games"
-          tag="li"
-          :class="{active:isActive==='4',boldfont:true}"
-        >
+        <router-link to="/Games" tag="li" :class="{active:isActive==='4',boldfont:true}">
           游戏 /
           <span class="efont">Games</span>
         </router-link>
       </ul>
+      <section></section>
     </el-col>
     <el-col :span="4">
       <div v-if="!$store.state.user.isLogin">
@@ -50,8 +35,14 @@
         <el-dropdown>
           <span class="link-type">{{$store.state.user.name}}</span>▾
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item divided @click.native="logOut">退出登录</el-dropdown-item>
+            <el-dropdown-item disabled >
+              <i class="el-icon-location-outline" style="color:#409eff"></i>
+              <span>{{$store.state.weather.city}}</span><br>
+              <img :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
+              <span>{{$store.state.weather.temp}}°C</span>
+            </el-dropdown-item>
+            <el-dropdown-item v-if="!$route.meta.isCenter" :divided="!$route.meta.isCenter" @click.native="toUserCenter">个人中心</el-dropdown-item>
+            <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -78,6 +69,9 @@ export default {
         default:
           return '1'
       }
+    },
+    weatherIconSrc() {
+      return `static/weathercn/${this.$store.state.weather.img}.png`
     }
   },
   methods: {
@@ -89,6 +83,11 @@ export default {
           duration: 1000
         })
       })
+    },
+    toUserCenter() {
+      if (this.$store.state.user.isLogin) {
+        this.$router.push({ path: '/UserCenter' })
+      }
     }
   }
 }
@@ -110,7 +109,8 @@ export default {
   font-size: 3.2rem;
   color: #409eff;
 }
-.nav-block li,.nav-log-block li {
+.nav-block li,
+.nav-log-block li {
   float: left;
   font-size: 1.8rem;
 }

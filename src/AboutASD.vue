@@ -12,7 +12,7 @@
     <el-row type="flex" justify="space-between" align="middle" style="margin-top:1rem">
       <el-col :span="1"></el-col>
       <el-col :span="22">
-        <img src="../static/images/aboutASD.jpg" width="70%">
+        <img src="static/images/aboutASD.jpg" width="70%">
       </el-col>
       <el-col :span="1"></el-col>
     </el-row>
