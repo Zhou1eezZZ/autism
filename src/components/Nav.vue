@@ -22,7 +22,17 @@
           <span class="efont">Games</span>
         </router-link>
       </ul>
-      <section></section>
+      <section style="display:none">
+        <div style="font-size:1.6rem">
+          <i class="el-icon-location-outline" style="color:#409eff"></i>
+          <span>{{$store.state.weather.city}}</span>
+          <img :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
+          <span>{{$store.state.weather.weather}}</span>
+          <span>{{$store.state.weather.temp}}°C</span>
+          <span>{{$store.state.weather.date}}</span>
+          <span>{{$store.state.weather.week}}</span>
+        </div>
+      </section>
     </el-col>
     <el-col :span="4">
       <div v-if="!$store.state.user.isLogin">
@@ -35,13 +45,19 @@
         <el-dropdown>
           <span class="link-type">{{$store.state.user.name}}</span>▾
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item disabled >
+            <el-dropdown-item v-if="!$route.meta.isCenter" disabled>
               <i class="el-icon-location-outline" style="color:#409eff"></i>
-              <span>{{$store.state.weather.city}}</span><br>
-              <img :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
+              <span>{{$store.state.weather.city}}</span>
+              <br>
+              <img v-if="weatherIconSrc.length>10" :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
+              <span v-else>{{weatherIconSrc}}</span>
               <span>{{$store.state.weather.temp}}°C</span>
             </el-dropdown-item>
-            <el-dropdown-item v-if="!$route.meta.isCenter" :divided="!$route.meta.isCenter" @click.native="toUserCenter">个人中心</el-dropdown-item>
+            <el-dropdown-item
+              v-if="!$route.meta.isCenter"
+              :divided="!$route.meta.isCenter"
+              @click.native="toUserCenter"
+            >个人中心</el-dropdown-item>
             <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -71,7 +87,8 @@ export default {
       }
     },
     weatherIconSrc() {
-      return `static/weathercn/${this.$store.state.weather.img}.png`
+      const tmp = this.$store.state.weather.img
+      if (tmp === '0') { return '☀️' } else if (tmp === '1') { return '🌥️' } else if (tmp === '2') { return '☁️' } else if (tmp === '3') { return '🌦️' } else if (tmp === '4') { return '⛈️' } else if (tmp === '7' || tmp === '8' || tmp === '9') { return '🌧️' } else if (tmp === '13' || tmp === '14') { return '🌨️' } else if (tmp === '15' || tmp === '16' || tmp === '17') { return '❄️' } else if (tmp === '18') { return '🌫️' } else { return `static/weathercn/${this.$store.state.weather.img}.png` }
     }
   },
   methods: {
