@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     signIn() {
-      this.$router.push({ path: '/SignIn' })
+      this.$router.push({ path: '/Login' })
     },
     toAboutASD() {
       this.$router.push({ path: '/AboutASD' })
