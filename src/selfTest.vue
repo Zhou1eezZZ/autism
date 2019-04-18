@@ -5,17 +5,15 @@
 
       <el-col :span="16">
         <transition name="fade" mode="out-in" appear>
-          <el-card
+          <div
             v-if="activeForm === '0'"
-            key="card1"
-            :body-style="{height:'70vh','background-color':'#f9f9f9'}"
-            style="overflow:hidden"
+            style="overflow:hidden;height:70vh;background-color:#f9f9f9"
           >
-            <h1 class="title">
+            <el-card class="selfTestTitle">
               量表选择 /
               <span class="efont">choose a scale</span>
-            </h1>
-            <el-card shadow="hover" class="formBrief">
+            </el-card>
+            <el-card shadow="always" class="formBrief">
               <div slot="header">
                 <span style="font-size:1.6rem;font-weight:bold">自闭症儿童ABC量表</span>
               </div>
@@ -25,7 +23,7 @@
               <p style="color:#409eff;font-weight:bold">Tips:如果您想快速评估您的对象是否患有自闭症（特别是家长用户），我们建议您选择此表。</p>
               <el-button type="primary" style="margin-top:1rem;" @click="activeForm = '1'">进入测试</el-button>
             </el-card>
-            <el-card shadow="hover" class="formBrief">
+            <el-card shadow="always" class="formBrief">
               <div slot="header">
                 <span style="font-size:1.6rem;font-weight:bold">自闭症自测与评估CARS量表</span>
               </div>
@@ -40,7 +38,7 @@
               </p>
               <el-button type="primary" style="margin-top:1rem;" @click="activeForm = '2'">进入测试</el-button>
             </el-card>
-          </el-card>
+          </div>
           <el-card v-if="activeForm === '1'" key="card2">
             <div slot="header" class="clearfix">
               <span style="font-size:2rem;line-height:normal">自闭症儿童ABC量表</span>
@@ -448,9 +446,10 @@ export default {
 </script>
 
 <style scoped>
-.title {
+.selfTestTitle {
   font-size: 1.8rem;
-  margin: 3vh 0;
+  line-height: 4rem;
+  margin: 3vh 4.5%;
 }
 .formBrief {
   width: 40%;
