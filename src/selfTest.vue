@@ -7,7 +7,7 @@
         <transition name="fade" mode="out-in" appear>
           <div
             v-if="activeForm === '0'"
-            style="overflow:hidden;height:70vh;background-color:#f9f9f9"
+            style="overflow:hidden;height:70vh;"
           >
             <el-card class="selfTestTitle">
               量表选择 /

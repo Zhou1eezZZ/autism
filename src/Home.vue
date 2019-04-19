@@ -4,8 +4,8 @@
       <el-row type="flex" justify="space-between" align="middle">
         <el-col :span="4"></el-col>
         <el-col :span="16">
-          <el-card :body-style="{ padding: '0rem'}" style="border-radius:1rem;height:100%;height:35vh">
-            <div style="width:55%;overflow:hidden;float: left;">
+          <el-card :body-style="{ padding: '0rem'}" style="border-radius:1rem;">
+            <div style="width:60%;overflow:hidden;float: left;">
               <img src="../static/images/homeCard.jpg" class="image">
             </div>
             
@@ -105,26 +105,24 @@ export default {
 <style scoped>
 .image {
   width: 100%;
-  height: 35vh;
 }
 .cardRight {
-  width: 45%;
+  width: 40%;
   float: left;
   overflow: hidden;
-  height: 30vh;
   box-sizing: border-box;
+  margin:5vh 0;
 }
 .cardRight h1 {
   font-size: 2.6rem;
   font-weight: bold;
-  margin-top: 6vh;
 }
 .cardRight p {
   width: 50%;
   font-size: 1.6rem;
   text-align: left;
   margin: 0 auto;
-  margin-top: 6%;
+  margin-top: 20px;
   line-height: 1.8rem;
 }
 .aboutTitle {

@@ -17,8 +17,7 @@
             type="password"
             placeholder="请输入密码"
             prefix-icon="el-icon-goods"
-            
-            clearable
+            show-password
             v-model="data.password"
           ></el-input>
         </el-form-item>
@@ -62,6 +61,12 @@ export default {
             duration: 1000
           })
           this.$router.push({ path: '/' })
+        } else {
+          this.$message({
+            type: 'error',
+            message: response.data.statusMessage,
+            showClose: true
+          })
         }
       })
     }

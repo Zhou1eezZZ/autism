@@ -4,6 +4,7 @@
       <h1 class="logo efont">AUTISM</h1>
     </el-col>
     <el-col :span="14">
+      <transition name="fade" mode="out-in" appear>
       <ul v-if="!$route.meta.isCenter" class="nav-block">
         <router-link to="/" tag="li" :class="{active:isActive==='1',boldfont:true}">
           首页 /
@@ -22,17 +23,19 @@
           <span class="efont">Games</span>
         </router-link>
       </ul>
-      <section style="display:none">
-        <div style="font-size:1.6rem">
+      <section v-if="$route.meta.isCenter">
+        <div style="font-size:1.6rem;">
           <i class="el-icon-location-outline" style="color:#409eff"></i>
-          <span>{{$store.state.weather.city}}</span>
-          <img :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
-          <span>{{$store.state.weather.weather}}</span>
-          <span>{{$store.state.weather.temp}}°C</span>
-          <span>{{$store.state.weather.date}}</span>
+          <span style="color:#409eff">{{$store.state.weather.city}}&nbsp;&nbsp;</span>
+          <img v-if="weatherIconSrc.length>10" :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
+          <span v-else>{{weatherIconSrc}}</span>
+          <span>{{$store.state.weather.weather}}&nbsp;&nbsp;</span>
+          <span>{{$store.state.weather.temp}}°C&nbsp;&nbsp;</span>
+          <span>{{$store.state.weather.date}}&nbsp;&nbsp;</span>
           <span>{{$store.state.weather.week}}</span>
         </div>
       </section>
+      </transition>
     </el-col>
     <el-col :span="4">
       <div v-if="!$store.state.user.isLogin">
@@ -58,6 +61,7 @@
               :divided="!$route.meta.isCenter"
               @click.native="toUserCenter"
             >个人中心</el-dropdown-item>
+            <el-dropdown-item v-else @click.native="$router.push({path:'/'})">返回首页</el-dropdown-item>
             <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -99,6 +103,7 @@ export default {
           message: '成功退出登录',
           duration: 1000
         })
+        this.$router.push({ path: '/' })
       })
     },
     toUserCenter() {

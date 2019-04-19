@@ -118,6 +118,42 @@ const actions = {
       commit('SET_ISLOGIN', false)
       resolve()
     })
+  },
+  UpdateUserInfo({ commit }, userInfo) {
+    return new Promise((resolve, reject) => {
+      UserAPI.userUpdate(userInfo).then(response => {
+        if (response && response.data && response.data.successful) {
+          const data = {
+            uuid: response.data.data
+          }
+          // debugger
+          UserAPI.getUserInfo(data).then(res => {
+            if (res && res.data && res.data.successful && res.data.data.list) {
+              const tmp = res.data.data.list[0]
+              commit('SET_ADDRESS', tmp.address)
+              commit('SET_DEPTID', tmp.deptId)
+              commit('SET_EMAIL', tmp.email)
+              commit('SET_NAME', tmp.name)
+              commit('SET_NATION', tmp.nation)
+              commit('SET_PHONE', tmp.phone)
+              commit('SET_QUALIFICATIONNUMBER', tmp.qualificationNumber)
+              commit('SET_REALNAME', tmp.realName)
+              if (tmp.relatedUser) {
+                commit('SET_RELATEDUSER', tmp.relatedUser)
+              }
+              commit('SET_SEX', tmp.sex)
+              commit('SET_TYPE', tmp.type)
+              commit('SET_UUID', tmp.uuid)
+              commit('SET_WORKTIME', tmp.workTime)
+              commit('SET_ISLOGIN', true)
+            }
+            resolve(res)
+          }).catch(error => {
+            reject(error)
+          })
+        }
+      })
+    })
   }
 }
 

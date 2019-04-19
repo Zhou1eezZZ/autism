@@ -199,14 +199,11 @@ body {
 .pic-wrap img {
   width: 70%;
 }
-.el-scrollbar__wrap {
-  overflow-x: hidden;
-}
 .bgfun{
   font-size: 8rem;
   position: fixed;
   bottom: 70px;
-  right: 50px;
+  left: 50px;
   z-index: -1;
   color: #409eff;
   opacity: 0.4;

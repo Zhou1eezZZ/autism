@@ -7,7 +7,7 @@ import AboutASD from '@/AboutASD.vue'
 import News from '@/News'
 import SelfTest from '@/selfTest'
 import Games from '@/Games'
-import UserCenter from '@/UserCenter'
+import UserCenter from '@/user/UserCenter'
 
 Vue.use(Router)
 
