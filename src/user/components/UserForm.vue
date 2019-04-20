@@ -13,7 +13,15 @@
         <el-input v-model="userData.uuid" disabled/>
       </el-form-item>
       <el-form-item prop="type" label="用户类型" required>
-        <el-input v-model="userData.type" disabled/>
+        <!-- <el-input v-model="userData.type" disabled/> -->
+        <el-select v-model="userData.type" placeholder="请选择" style="float:left" disabled>
+          <el-option
+            v-for="item in userDic"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
       </el-form-item>
       <div v-if="userData.type === '4'">
         <el-form-item prop="deptId" label="所属机构">
@@ -23,7 +31,11 @@
           <el-input v-model="userData.qualificationNumber"/>
         </el-form-item>
         <el-form-item prop="workTime" label="从业时间">
-          <el-input v-model="userData.workTime"/>
+          <el-date-picker
+              v-model="userData.workTime"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
         </el-form-item>
       </div>
       <el-form-item prop="phone" label="手机号">
@@ -50,7 +62,15 @@
         </el-select>
       </el-form-item>
       <el-form-item prop="nation" label="民族">
-        <el-input v-model="userData.nation"/>
+        <!-- <el-input v-model="userData.nation"/> -->
+        <el-select v-model="userData.nation" placeholder="请选择" style="float:left">
+          <el-option
+            v-for="item in nationDic"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
       </el-form-item>
       <el-form-item prop="address" label="地址">
         <el-input v-model="userData.address"/>
@@ -64,7 +84,7 @@
         <span>{{userData.uuid}}</span>
       </el-form-item>
       <el-form-item prop="type" label="用户类型：" class="formItem">
-        <span>{{userData.type}}</span>
+        <span>{{userData.type | filterByDic(userDic)}}</span>
       </el-form-item>
       <div v-if="userData.type === '4'">
         <el-form-item prop="deptId" label="所属机构：" class="formItem">
@@ -90,10 +110,10 @@
         <span>{{userData.realName}}</span>
       </el-form-item>
       <el-form-item prop="sex" label="性别：" class="formItem">
-        <span>{{userData.sex}}</span>
+        <span>{{userData.sex | filterByDic(sexDic)}}</span>
       </el-form-item>
       <el-form-item v-if="userData.nation" prop="nation" label="民族：" class="formItem">
-        <span>{{userData.nation}}</span>
+        <span>{{userData.nation |filterByDic(nationDic)}}</span>
       </el-form-item>
       <el-form-item v-if="userData.address" prop="address" label="地址：" class="formItem">
         <span>{{userData.address}}</span>
@@ -105,17 +125,19 @@
     <el-button v-if="!isEditable" type="primary" @click="$emit('changeEditState',true)">修改信息</el-button>
     <div v-else>
       <el-button type="primary" @click="updateInfo">确认</el-button>
-      <el-button>取消</el-button>
+      <el-button @click="cancelUpdate">取消</el-button>
     </div>
   </div>
 </template>
 
 <script>
 import sexDic from '@/assets/dictionary/sex'
+import nationDic from '@/assets/dictionary/nation'
+import userDic from '@/assets/dictionary/user'
 export default {
   data() {
     return {
-      userData: null,
+      userData: this.$store.state.user,
       rules: {
         name: [{ required: true, message: '用户名为必填项', trigger: 'blur' }],
         phone: [{ required: true, message: '手机号为必填项', trigger: 'blur' }],
@@ -129,11 +151,23 @@ export default {
           }
         ]
       },
-      sexDic: sexDic
+      sexDic: sexDic,
+      nationDic: nationDic,
+      userDic: userDic
     }
   },
+  filters: {
+    filterByDic(val, dic) {
+      // debugger
+      if (val && dic) {
+        return dic.find(e => e.value === val).label
+      }
+    }
+  },
+  watch: {
+  },
   created() {
-    this.userData = Object.assign({}, this.$store.state.user)
+    // this.userData = Object.assign({}, this.$store.state.user)
   },
   props: {
     isEditable: {
@@ -163,6 +197,15 @@ export default {
           }
           vm.$emit('changeEditState', false)
         })
+      })
+    },
+    cancelUpdate() {
+      this.$confirm('当前有未保存的信息，确认执行当前操作？', '提示', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$emit('changeEditState', false)
       })
     }
   }

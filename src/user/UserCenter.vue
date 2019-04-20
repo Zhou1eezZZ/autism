@@ -20,7 +20,9 @@
           type="border-card"
           tab-position="top"
         >
-          <el-tab-pane label="配置管理" name="配置管理">配置管理</el-tab-pane>
+          <el-tab-pane label="用户认证" name="用户认证">
+            <user-authentication />
+          </el-tab-pane>
           <el-tab-pane label="角色管理" name="角色管理">角色管理</el-tab-pane>
           <el-tab-pane label="定时任务补偿" name="定时任务补偿">定时任务补偿</el-tab-pane>
         </el-tabs>
@@ -31,16 +33,18 @@
 </template>
 
 <script>
-import userForm from './UserForm'
+import userForm from './components/UserForm'
+import UserAuthentication from './components/UserAuthentication'
 export default {
   data() {
     return {
-      activeTabName: '配置管理',
+      activeTabName: '用户认证',
       editable: false
     }
   },
   components: {
-    userForm
+    userForm,
+    UserAuthentication
   },
   created() {
     if (!this.$store.state.user.isLogin) {
