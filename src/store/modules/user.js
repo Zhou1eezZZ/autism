@@ -110,7 +110,7 @@ const actions = {
       commit('SET_PHONE', '')
       commit('SET_QUALIFICATIONNUMBER', '')
       commit('SET_REALNAME', '')
-      commit('SET_RELATEDUSER', '')
+      commit('SET_RELATEDUSER', [])
       commit('SET_SEX', '')
       commit('SET_TYPE', '')
       commit('SET_UUID', '')
@@ -153,6 +153,33 @@ const actions = {
           })
         }
       })
+    })
+  },
+  SetUserInfo({ state, commit }) {
+    const data = {
+      uuid: state.uuid
+    }
+    UserAPI.getUserInfo(data).then(res => {
+      // debugger
+      if (res && res.data && res.data.successful && res.data.data.list) {
+        const tmp = res.data.data.list[0]
+        commit('SET_ADDRESS', tmp.address)
+        commit('SET_DEPTID', tmp.deptId)
+        commit('SET_EMAIL', tmp.email)
+        commit('SET_NAME', tmp.name)
+        commit('SET_NATION', tmp.nation)
+        commit('SET_PHONE', tmp.phone)
+        commit('SET_QUALIFICATIONNUMBER', tmp.qualificationNumber)
+        commit('SET_REALNAME', tmp.realName)
+        if (tmp.relatedUser) {
+          commit('SET_RELATEDUSER', tmp.relatedUser)
+        }
+        commit('SET_SEX', tmp.sex)
+        commit('SET_TYPE', tmp.type)
+        commit('SET_UUID', tmp.uuid)
+        commit('SET_WORKTIME', tmp.workTime)
+        commit('SET_ISLOGIN', true)
+      }
     })
   }
 }

@@ -62,6 +62,7 @@
               @click.native="toUserCenter"
             >个人中心</el-dropdown-item>
             <el-dropdown-item v-else @click.native="$router.push({path:'/'})">返回首页</el-dropdown-item>
+            <el-dropdown-item @click.native="$router.push({path:'/resetPsw'})">修改密码</el-dropdown-item>
             <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>

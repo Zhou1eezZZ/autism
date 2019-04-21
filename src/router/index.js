@@ -8,6 +8,8 @@ import News from '@/News'
 import SelfTest from '@/selfTest'
 import Games from '@/Games'
 import UserCenter from '@/user/UserCenter'
+import RelationDetail from '@/user/RelationDetail'
+import resetPsw from '@/user/resetPsw'
 
 Vue.use(Router)
 
@@ -80,6 +82,24 @@ export default new Router({
       path: '/UserCenter',
       name: 'UserCenter',
       component: UserCenter,
+      meta: {
+        isNavShow: true,
+        isCenter: true
+      }
+    },
+    {
+      path: '/RelationDetail',
+      name: 'RelationDetail',
+      component: RelationDetail,
+      meta: {
+        isNavShow: true,
+        isCenter: true
+      }
+    },
+    {
+      path: '/resetPsw',
+      name: 'resetPsw',
+      component: resetPsw,
       meta: {
         isNavShow: true,
         isCenter: true

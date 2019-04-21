@@ -6,7 +6,7 @@
       :rules="rules"
       :model="userData"
       label-position="right"
-      label-width="100px"
+      label-width="125px"
       style="overflow:hidden"
     >
       <el-form-item prop="uuid" label="用户ID">
@@ -34,7 +34,9 @@
           <el-date-picker
               v-model="userData.workTime"
               type="date"
-              placeholder="选择日期">
+              placeholder="选择日期"
+              value-format="timestamp"
+              style="float:left">
             </el-date-picker>
         </el-form-item>
       </div>
@@ -90,7 +92,7 @@
         <el-form-item prop="deptId" label="所属机构：" class="formItem">
           <span>{{userData.deptId}}</span>
         </el-form-item>
-        <el-form-item prop="qualificationNumber" label="干预师资格认证号：" class="formItem">
+        <el-form-item prop="qualificationNumber" label="干预师资格认证号：" label-width="140px" class="formItem">
           <span>{{userData.qualificationNumber}}</span>
         </el-form-item>
         <el-form-item prop="workTime" label="从业时间：" class="formItem">
@@ -103,7 +105,7 @@
       <el-form-item prop="name" label="用户名：" class="formItem">
         <span>{{userData.name}}</span>
       </el-form-item>
-      <el-form-item prop="email" label="邮箱：" class="formItem">
+      <el-form-item v-if="userData.email" prop="email" label="邮箱：" class="formItem">
         <span>{{userData.email}}</span>
       </el-form-item>
       <el-form-item v-if="userData.realName" prop="realName" label="真实姓名：" class="formItem">
@@ -145,7 +147,7 @@ export default {
         email: [
           { required: true, message: '邮箱为必填项', trigger: 'blur' },
           {
-            pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
+            pattern: /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/,
             message: '邮箱格式有误',
             trigger: 'blur'
           }

@@ -40,8 +40,7 @@ export default {
       rules: {},
       data: {
         phone: '',
-        password: '',
-        type: '1'
+        password: ''
       }
     }
   },

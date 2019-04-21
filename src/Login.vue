@@ -21,6 +21,7 @@
         placeholder="请输入密码"
         prefix-icon="el-icon-goods"
         class="gap"
+        show-password
         v-model="password"
       ></el-input>
       <el-input
@@ -28,6 +29,7 @@
         placeholder="请确认密码"
         prefix-icon="el-icon-goods"
         class="gap"
+        show-password
         v-model="passwordConfirm"
       ></el-input>
       <div style="width:100%" class="gap">
@@ -61,16 +63,32 @@ export default {
     },
     signUp() {
       // const vm = this
-      const data = {
-        name: this.accountNum,
-        password: this.password,
-        phone: this.phone
-      }
-      UserAPI.userSignUp(data).then(respone => {
-        if (respone && respone.data) {
-          debugger
+      if (this.password === this.passwordConfirm) {
+        const data = {
+          name: this.accountNum,
+          password: this.password,
+          phone: this.phone
         }
-      })
+        UserAPI.userSignUp(data).then(respone => {
+          if (respone && respone.data && respone.data.successful) {
+            this.$message({
+              message: '注册成功',
+              type: 'success'
+            })
+            this.$router.push({ path: '/SignIn' })
+          } else {
+            this.$message({
+              message: respone.data.statusMessage,
+              type: 'error'
+            })
+          }
+        })
+      } else {
+        this.$message({
+          type: 'error',
+          message: '两次密码输入不一样'
+        })
+      }
     }
   }
 }
