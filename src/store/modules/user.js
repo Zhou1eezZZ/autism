@@ -10,6 +10,7 @@ const state = {
   phone: '',
   qualificationNumber: '',
   realName: '',
+  relatedUser: [],
   sex: '',
   type: '',
   uuid: '',
@@ -49,6 +50,9 @@ const mutations = {
   SET_REALNAME: (state, realName) => {
     state.realName = realName
   },
+  SET_RELATEDUSER: (state, relatedUser) => {
+    state.relatedUser = relatedUser
+  },
   SET_SEX: (state, sex) => {
     state.sex = sex
   },
@@ -81,6 +85,9 @@ const actions = {
           commit('SET_PHONE', data.phone)
           commit('SET_QUALIFICATIONNUMBER', data.qualificationNumber)
           commit('SET_REALNAME', data.realName)
+          if (data.relatedUser) {
+            commit('SET_RELATEDUSER', data.relatedUser)
+          }
           commit('SET_SEX', data.sex)
           commit('SET_TYPE', data.type)
           commit('SET_UUID', data.uuid)

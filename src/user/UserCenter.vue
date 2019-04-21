@@ -23,7 +23,14 @@
           <el-tab-pane label="用户认证" name="用户认证">
             <user-authentication />
           </el-tab-pane>
-          <el-tab-pane label="角色管理" name="角色管理">角色管理</el-tab-pane>
+          <el-tab-pane label="关联管理" name="关联管理">
+            <el-table :data="relationData">
+              <el-table-column prop="realName" label="真实姓名"></el-table-column>
+              <el-table-column prop="phone" label="电话"></el-table-column>
+              <el-table-column prop="email" label="邮箱"></el-table-column>
+              <el-table-column prop="nation" label="民族"></el-table-column>
+            </el-table>
+          </el-tab-pane>
           <el-tab-pane label="定时任务补偿" name="定时任务补偿">定时任务补偿</el-tab-pane>
         </el-tabs>
       </el-col>
@@ -39,7 +46,8 @@ export default {
   data() {
     return {
       activeTabName: '用户认证',
-      editable: false
+      editable: false,
+      relationData: null
     }
   },
   components: {
@@ -53,6 +61,10 @@ export default {
         message: '账号未登录'
       })
       this.$router.push({ path: '/' })
+    } else {
+      if (this.$store.state.user.relatedUser) {
+        this.relationData = this.$store.state.user.relatedUser
+      }
     }
   },
   methods: {
