@@ -40,12 +40,21 @@ export function userUpdate(data) {
   })
 }
 
+export function pswUpdate(data) {
+  return request({
+    url: `/autismAPI/user/update?newPsw=${data.newPsd}`,
+    method: 'put',
+    data
+  })
+}
+
 const UserAPI = {
   userSignUp,
   userDelete,
   getUserInfo,
   userLogin,
-  userUpdate
+  userUpdate,
+  pswUpdate
 }
 
 export default UserAPI

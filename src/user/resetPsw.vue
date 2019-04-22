@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import UserAPI from '@/api/user'
 export default {
   data() {
     return {
@@ -37,26 +38,36 @@ export default {
         newPsw: '',
         confirmNewPsw: ''
       },
-      rules: {}
+      rules: {},
+      userInfo: this.$store.state.user
+    }
+  },
+  created() {
+    if (!this.$store.state.user.isLogin) {
+      this.$message({
+        type: 'warning',
+        message: '账号未登录'
+      })
+      this.$router.push({ path: '/' })
     }
   },
   methods: {
     resetPsw() {
       const vm = this
       if (this.data.newPsw === this.data.confirmNewPsw) {
-        const data = {
-          uuid: this.$store.state.user.uuid,
-          newPsw: this.data.newPsw,
+        let data = {
+          newPsd: this.data.newPsw,
           password: this.data.oldPsw
         }
-        debugger
-        this.$store.dispatch('user/UpdateUserInfo', data).then(res => {
+        data = Object.assign({}, data, this.userInfo)
+        UserAPI.pswUpdate(data).then(res => {
+          debugger
           if (res && res.data && res.data.successful) {
             vm.$message({
               type: 'success',
               message: '密码更新成功'
             })
-            // this.$router.push({ path: '/' })
+            this.$router.push({ path: '/' })
           } else {
             vm.$message({
               type: 'error',

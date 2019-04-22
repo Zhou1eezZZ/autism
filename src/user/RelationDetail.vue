@@ -66,11 +66,27 @@
               </template>
             </el-table-column>
             <el-table-column prop="interventionistId" label="干预师ID"></el-table-column>
-            <el-table-column prop="startTime" label="开始时间"></el-table-column>
-            <el-table-column prop="endTime" label="结束时间"></el-table-column>
+            <el-table-column label="开始时间">
+              <template slot-scope="scope">
+                <span>{{scope.row.startTime|formatDate('yyyy-MM-dd')}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="结束时间">
+              <template slot-scope="scope">
+                <span>{{scope.row.endTime|formatDate('yyyy-MM-dd')}}</span>
+              </template>
+            </el-table-column>
             <el-table-column label="评估状态">
               <template slot-scope="scope">
-                <span>{{scope.row.state|filterByDic(interventionDic)}}</span>
+                <el-tag v-if="scope.row.state === '2'"><span>{{scope.row.state|filterByDic(interventionDic)}}</span></el-tag>
+                <el-tag v-if="scope.row.state === '1'" type="info"><span>{{scope.row.state|filterByDic(interventionDic)}}</span></el-tag>
+                <el-tag v-if="scope.row.state === '3'" type="success"><span>{{scope.row.state|filterByDic(interventionDic)}}</span></el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column v-if="$store.state.user.type==='4'" label="操作">
+              <template slot-scope="scope">
+              <el-button type="text" @click="editIntervention(scope.row)">编辑</el-button>
+              <el-button type="text" style="color:#F56C6C" @click="deleteIntervention(scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -78,7 +94,7 @@
       </el-col>
       <el-col :span="5"></el-col>
     </el-row>
-    <el-dialog title="新增干预报告" :visible="dialogVisible" width="800px" :before-close="handleClose">
+    <el-dialog title="新增干预报告" :key="1" :visible="dialogVisible" width="800px" :before-close="handleClose">
       <el-form
         :model="interventionInfo"
         label-position="right"
@@ -133,6 +149,61 @@
         <el-button type="primary" @click="addIntervention">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog title="更新干预报告" :key="2" :visible="dialogVisible1" width="800px" :before-close="handleClose1">
+      <el-form
+        :model="tmpInterventionInfo"
+        label-position="right"
+        label-width="140px"
+        style="margin-right:50px"
+      >
+        <el-form-item prop="interventionId" label="干预对象ID">
+          <el-input v-model="tmpInterventionInfo.interventionId" disabled/>
+        </el-form-item>
+        <el-form-item prop="interventionistId" label="干预师ID">
+          <el-input v-model="tmpInterventionInfo.interventionistId" disabled/>
+        </el-form-item>
+        <el-form-item prop="state" label="干预状态">
+          <el-select v-model="tmpInterventionInfo.state" placeholder="请选择" style="float:left">
+            <el-option
+              v-for="item in interventionDic"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="startTime" label="开始时间">
+          <el-date-picker
+            v-model="tmpInterventionInfo.startTime"
+            type="date"
+            placeholder="选择日期"
+            value-format="timestamp"
+            style="float:left"
+          ></el-date-picker>
+        </el-form-item>
+        <el-form-item prop="endTime" label="结束时间">
+          <el-date-picker
+            v-model="tmpInterventionInfo.endTime"
+            type="date"
+            placeholder="选择日期"
+            value-format="timestamp"
+            style="float:left"
+          ></el-date-picker>
+        </el-form-item>
+        <el-form-item prop="blog" label="干预日志">
+          <el-input
+            type="textarea"
+            :autosize="{ minRows: 6, maxRows: 20}"
+            placeholder="请输入内容"
+            v-model="tmpInterventionInfo.blog">
+          </el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="handleClose1">取 消</el-button>
+        <el-button type="primary" @click="updateIntervention">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -142,6 +213,7 @@ import nationDic from '@/assets/dictionary/nation'
 import userDic from '@/assets/dictionary/user'
 import interventionDic from '@/assets/dictionary/interventionState'
 import AsscessAPI from '@/api/asscess'
+import { formatDate } from '../utils/timeFormat'
 export default {
   data() {
     return {
@@ -152,7 +224,9 @@ export default {
       interventionDic: interventionDic,
       interventionList: [],
       dialogVisible: false,
-      interventionInfo: {}
+      dialogVisible1: false,
+      interventionInfo: {},
+      tmpInterventionInfo: {}
     }
   },
   filters: {
@@ -161,7 +235,8 @@ export default {
       if (val && dic) {
         return dic.find(e => e.value === val).label
       }
-    }
+    },
+    formatDate
   },
   created() {
     if (!this.$store.state.user.isLogin) {
@@ -182,8 +257,58 @@ export default {
     this.interventionInfo = Object.assign({}, data)
   },
   methods: {
+    editIntervention(row) {
+      // debugger
+      this.tmpInterventionInfo = Object.assign({}, this.tmpInterventionInfo, row)
+      this.dialogVisible1 = true
+    },
+    updateIntervention() {
+      const vm = this
+      AsscessAPI.updateAsscess(this.tmpInterventionInfo).then(res => {
+        if (res && res.data && res.data.successful) {
+          vm.$message({
+            type: 'success',
+            message: '更新成功!'
+          })
+          vm.handleClose1()
+          vm.getInterventionList()
+        } else {
+          vm.$message({
+            type: 'error',
+            message: res.data.statusMessage
+          })
+        }
+      })
+    },
+    deleteIntervention(row) {
+      const vm = this
+      this.$confirm('是否删除该干预报告?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // debugger
+        AsscessAPI.delAsscess(row).then(res => {
+          if (res && res.data && res.data.successful) {
+            vm.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+            vm.getInterventionList()
+          } else {
+            vm.$message({
+              type: 'error',
+              message: res.data.statusMessage
+            })
+          }
+        })
+      })
+    },
     handleClose() {
       this.dialogVisible = false
+    },
+    handleClose1() {
+      this.dialogVisible1 = false
     },
     getInterventionList() {
       const vm = this
@@ -204,12 +329,13 @@ export default {
     addIntervention() {
       const vm = this
       AsscessAPI.addAsscess(this.interventionInfo).then(res => {
-        debugger
+        // debugger
         if (res && res.data && res.data.successful) {
           vm.$message({
             type: 'success',
             message: '新增报告成功'
           })
+          vm.handleClose()
           vm.getInterventionList()
         } else {
           vm.$message({

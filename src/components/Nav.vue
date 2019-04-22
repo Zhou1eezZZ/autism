@@ -56,13 +56,13 @@
               <span v-else>{{weatherIconSrc}}</span>
               <span>{{$store.state.weather.temp}}°C</span>
             </el-dropdown-item>
+            <el-dropdown-item v-if="!($route.path==='/')" @click.native="$router.push({path:'/'})">返回首页</el-dropdown-item>
             <el-dropdown-item
-              v-if="!$route.meta.isCenter"
+              v-if="!($route.path==='/UserCenter')"
               :divided="!$route.meta.isCenter"
               @click.native="toUserCenter"
             >个人中心</el-dropdown-item>
-            <el-dropdown-item v-else @click.native="$router.push({path:'/'})">返回首页</el-dropdown-item>
-            <el-dropdown-item @click.native="$router.push({path:'/resetPsw'})">修改密码</el-dropdown-item>
+            <el-dropdown-item v-if="!($route.path==='/resetPsw')" @click.native="$router.push({path:'/resetPsw'})">修改密码</el-dropdown-item>
             <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>

@@ -191,14 +191,14 @@ body {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-.pic-wrap {
+/* .pic-wrap {
   text-align: center;
   width: 100%;
   overflow: hidden;
 }
 .pic-wrap img {
   width: 70%;
-}
+} */
 .bgfun{
   font-size: 8rem;
   position: fixed;
@@ -239,5 +239,9 @@ body{
 }
 .link-type:hover{
   color: #409eff;
+}
+.dialog p img{
+  width: 70%;
+  margin-left: 10%;
 }
 </style>
