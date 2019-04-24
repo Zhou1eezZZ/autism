@@ -1,5 +1,9 @@
 const userDic = [
   {
+    value: '0',
+    label: '管理员'
+  },
+  {
     value: '1',
     label: '普通用户'
   },

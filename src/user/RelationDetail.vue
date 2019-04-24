@@ -58,7 +58,7 @@
           <el-table :data="interventionList">
             <el-table-column type="expand">
               <template slot-scope="props">
-                <el-form label-position="left" inline class="demo-table-expand">
+                <el-form label-position="left" inline label-width="100%">
                   <el-form-item label="干预日志">
                     <span>{{ props.row.blog }}</span>
                   </el-form-item>

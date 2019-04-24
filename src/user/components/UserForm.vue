@@ -199,7 +199,7 @@ export default {
           }
           vm.$emit('changeEditState', false)
         })
-      })
+      }).catch()
     },
     cancelUpdate() {
       this.$confirm('当前有未保存的信息，确认执行当前操作？', '提示', {

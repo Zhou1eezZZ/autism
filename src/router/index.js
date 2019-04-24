@@ -1,15 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/Home.vue'
-import Login from '@/Login.vue'
-import SignIn from '@/SignIn.vue'
-import AboutASD from '@/AboutASD.vue'
-import News from '@/News'
-import SelfTest from '@/selfTest'
-import Games from '@/Games'
-import UserCenter from '@/user/UserCenter'
-import RelationDetail from '@/user/RelationDetail'
-import resetPsw from '@/user/resetPsw'
 
 Vue.use(Router)
 
@@ -18,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      component: resolve => require(['@/Home.vue'], resolve),
       meta: {
         isNavShow: true,
         isCenter: false
@@ -27,7 +17,7 @@ export default new Router({
     {
       path: '/Login',
       name: 'Login',
-      component: Login,
+      component: resolve => require(['@/Login.vue'], resolve),
       meta: {
         isNavShow: false,
         isCenter: false
@@ -36,7 +26,7 @@ export default new Router({
     {
       path: '/SignIn',
       name: 'SignIn',
-      component: SignIn,
+      component: resolve => require(['@/SignIn.vue'], resolve),
       meta: {
         isNavShow: false,
         isCenter: false
@@ -45,7 +35,7 @@ export default new Router({
     {
       path: '/AboutASD',
       name: 'AboutASD',
-      component: AboutASD,
+      component: resolve => require(['@/AboutASD.vue'], resolve),
       meta: {
         isNavShow: true,
         isCenter: false
@@ -54,7 +44,7 @@ export default new Router({
     {
       path: '/News',
       name: 'News',
-      component: News,
+      component: resolve => require(['@/News'], resolve),
       meta: {
         isNavShow: true,
         isCenter: false
@@ -63,7 +53,7 @@ export default new Router({
     {
       path: '/SelfTest',
       name: 'SelfTest',
-      component: SelfTest,
+      component: resolve => require(['@/selfTest'], resolve),
       meta: {
         isNavShow: true,
         isCenter: false
@@ -72,7 +62,7 @@ export default new Router({
     {
       path: '/Games',
       name: 'Games',
-      component: Games,
+      component: resolve => require(['@/Games'], resolve),
       meta: {
         isNavShow: true,
         isCenter: false
@@ -81,7 +71,7 @@ export default new Router({
     {
       path: '/UserCenter',
       name: 'UserCenter',
-      component: UserCenter,
+      component: resolve => require(['@/user/UserCenter'], resolve),
       meta: {
         isNavShow: true,
         isCenter: true
@@ -90,7 +80,7 @@ export default new Router({
     {
       path: '/RelationDetail',
       name: 'RelationDetail',
-      component: RelationDetail,
+      component: resolve => require(['@/user/RelationDetail'], resolve),
       meta: {
         isNavShow: true,
         isCenter: true
@@ -99,7 +89,7 @@ export default new Router({
     {
       path: '/resetPsw',
       name: 'resetPsw',
-      component: resetPsw,
+      component: resolve => require(['@/user/resetPsw'], resolve),
       meta: {
         isNavShow: true,
         isCenter: true
