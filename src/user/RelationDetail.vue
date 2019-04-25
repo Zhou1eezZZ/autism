@@ -73,7 +73,9 @@
             </el-table-column>
             <el-table-column label="结束时间">
               <template slot-scope="scope">
-                <span>{{scope.row.endTime|formatDate('yyyy-MM-dd')}}</span>
+                <!-- <span>{{scope.row.endTime|formatDate('yyyy-MM-dd')}}</span> -->
+                <span v-if="scope.row.state === '3' && scope.row.endTime!==0">{{scope.row.endTime|formatDate('yyyy-MM-dd')}}</span>
+            <span v-else>-</span>
               </template>
             </el-table-column>
             <el-table-column label="评估状态">
