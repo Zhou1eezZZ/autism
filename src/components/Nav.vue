@@ -1,7 +1,7 @@
 <template>
   <el-row type="flex" justify="space-between" align="middle" class="navFix">
     <el-col :span="4">
-      <h1 class="logo efont">AUTISM</h1>
+      <h1 class="logo efontBold">AUTISM</h1>
     </el-col>
     <el-col :span="14">
       <transition name="fade" mode="out-in" appear>

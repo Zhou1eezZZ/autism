@@ -33,6 +33,7 @@ export default {
 </script>
 
 <style>
+@import './assets/css/font.css';
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -165,7 +166,7 @@ table {
 
 #app {
   /* font-family: "Avenir", Helvetica, Arial, sans-serif; */
-  font-family: Helvetica, Tahoma, Arial, "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family:'PingFangSC-Regular', Helvetica, Tahoma, Arial, "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -178,8 +179,12 @@ body {
   min-width: 1200px;
 }
 .efont {
-  font-family: "PizzaDudesHandwriting";
+  /* font-family: "PizzaDudesHandwriting"; */
+  font-family: 'efont';
   font-weight: normal;
+}
+.efontBold{
+  font-family: 'efontbold';
 }
 .topBlank {
   padding-top: 10rem;

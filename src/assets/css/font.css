@@ -1,0 +1,14 @@
+@font-face{
+  font-family: 'efont';
+  src: url('../../../static/fonts/TheGreatEscape.ttf')
+}
+
+@font-face{
+  font-family: 'efontbold';
+  src: url('../../../static/fonts/TheGreatEscapeBold.ttf')
+}
+
+@font-face{
+  font-family: 'PingFangSC-Regular';
+  src: url('../../../static/fonts/PingFangSC-Regular.ttf')
+}

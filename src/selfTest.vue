@@ -399,7 +399,7 @@ export default {
   methods: {
     submitFormABC() {
       // debugger
-      if (Object.getOwnPropertyNames(this.selfTestFormABC).length < 14) {
+      if (Object.getOwnPropertyNames(this.selfTestFormABC).length < 15) {
         this.$message({
           message: '您有题目遗漏，请全部完成再提交',
           type: 'warning'
@@ -416,12 +416,12 @@ export default {
           this.loading = false
         }, 3000)
         this.$refs.selfTestFormABC.resetFields()
-        console.log(this.$refs.selfTestFormABC)
+        // console.log(this.$refs.selfTestFormABC)
       }
     },
     submitFormCARS() {
       // debugger
-      if (Object.getOwnPropertyNames(this.selfTestFormCARS).length < 15) {
+      if (Object.getOwnPropertyNames(this.selfTestFormCARS).length < 16) {
         this.$message({
           message: '您有题目遗漏，请全部完成再提交',
           type: 'warning'
@@ -438,7 +438,7 @@ export default {
           this.loading = false
         }, 3000)
         this.$refs.selfTestFormCARS.resetFields()
-        console.log(this.$refs.selfTestFormCARS)
+        // console.log(this.$refs.selfTestFormCARS)
       }
     }
   }
