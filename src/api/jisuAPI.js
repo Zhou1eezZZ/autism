@@ -23,3 +23,14 @@ export function fetchWeather(ip) {
     }
   })
 }
+
+export function AIRobot(data) {
+  return request({
+    url: '/api/iqa/query',
+    method: 'get',
+    params: {
+      appkey: appKey,
+      question: data.question
+    }
+  })
+}

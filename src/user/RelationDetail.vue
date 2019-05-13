@@ -65,7 +65,11 @@
                 </el-form>
               </template>
             </el-table-column>
-            <el-table-column prop="interventionistId" label="干预师ID"></el-table-column>
+            <el-table-column label="干预师">
+              <template slot-scope="scope">
+                <span>{{scope.row.docter.realName}}</span>
+              </template>
+            </el-table-column>
             <el-table-column label="开始时间">
               <template slot-scope="scope">
                 <span>{{scope.row.startTime|formatDate('yyyy-MM-dd')}}</span>

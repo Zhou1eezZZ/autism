@@ -4,11 +4,22 @@
       <el-row type="flex" justify="space-between" align="middle">
         <el-col :span="4"></el-col>
         <el-col :span="16">
-          <el-card :body-style="{ padding: '0rem'}" style="border-radius:1rem;">
-            <div style="width:60%;overflow:hidden;float: left;">
-              <img src="../static/images/homeCard.jpg" class="image">
+          <el-carousel type="card" indicator-position="outside" arrow="never">
+            <el-carousel-item v-for="(item,index) in imgList" :key="index">
+              <img :src="item.url" class="image">
+            </el-carousel-item>
+          </el-carousel>
+        </el-col>
+        <el-col :span="4"></el-col>
+      </el-row>
+      <el-row type="flex" justify="space-between" align="middle" style="margin-top:4rem">
+        <el-col :span="4"></el-col>
+        <el-col :span="16">
+          <el-card :body-style="{ padding: '5vh 0','overflow':'hidden'}" style="border-radius:1rem;">
+            <div class="cardLeft">
+              <p>上面这些画美吗？</p>
+              <p>它们的作者是星星的孩子⭐</p>
             </div>
-            
             <div class="cardRight">
               <h1>什么是自闭症？</h1>
               <p>自闭症谱系障碍(ASD)是一种广泛性发育障碍，具体表现为社交沟通和社会交往缺陷与局限重复的行为、兴趣或活动。</p>
@@ -79,6 +90,15 @@ export default {
             '我们为治疗师提供其治疗对象的基本信息和干预进展总结，以及对其工作的若干辅助功能。提升了治疗师辅助治疗效率的同时也方便治疗师与家长之间的信息互通。',
           color: '#F56C6C'
         }
+      ],
+      imgList: [
+        { url: '../static/images/homeCard.jpg' },
+        { url: '../static/images/homeCard1.jpg' },
+        { url: '../static/images/homeCard2.jpg' },
+        { url: '../static/images/homeCard3.jpg' },
+        { url: '../static/images/homeCard4.jpg' },
+        { url: '../static/images/homeCard5.jpg' },
+        { url: '../static/images/homeCard6.jpg' }
       ]
     }
   },
@@ -104,14 +124,25 @@ export default {
 
 <style scoped>
 .image {
-  width: 100%;
+  /* width: 100%; */
+  height: 100%;
 }
-.cardRight {
-  width: 40%;
+.cardLeft{
+  width: 50%;
   float: left;
   overflow: hidden;
   box-sizing: border-box;
-  margin:5vh 0;
+}
+.cardLeft p{
+  font-size: 2.6rem;
+  line-height: 6.8rem;
+}
+.cardRight {
+  width: 50%;
+  float: left;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-left: 1px solid #DCDFE6;
 }
 .cardRight h1 {
   font-size: 2.6rem;

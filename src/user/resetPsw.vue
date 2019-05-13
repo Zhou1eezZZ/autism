@@ -60,8 +60,10 @@ export default {
           password: this.data.oldPsw
         }
         data = Object.assign({}, data, this.userInfo)
+        this.$delete(data, 'phone')
+        // debugger
         UserAPI.pswUpdate(data).then(res => {
-          debugger
+          // debugger
           if (res && res.data && res.data.successful) {
             vm.$message({
               type: 'success',
