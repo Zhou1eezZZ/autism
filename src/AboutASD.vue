@@ -9,18 +9,12 @@
       </el-col>
       <el-col :span="2"></el-col>
     </el-row>
-    <el-row type="flex" justify="space-between" align="middle" style="margin-top:1rem">
-      <el-col :span="1"></el-col>
-      <el-col :span="22">
-        <img src="static/images/aboutASD.jpg" width="70%">
-      </el-col>
-      <el-col :span="1"></el-col>
-    </el-row>
     <section style="margin-top:1rem">
       <el-row type="flex" justify="space-between" align="middle">
         <el-col :span="2"></el-col>
         <el-col :span="20">
           <el-card :body-style="{ padding: '2rem 4rem'}" style="border-radius:1rem;height:100%">
+            <img src="static/images/aboutASD.jpg" width="100%" height="400px"/>
             <h1 class="title boldfont">自闭症谱系障碍简介</h1>
             <pre class="description">{{description}}</pre>
             <h1 class="title boldfont" style="color:#67C23A">尽早发现病症可以改变生活</h1>

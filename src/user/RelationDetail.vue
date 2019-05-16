@@ -107,11 +107,17 @@
         label-width="140px"
         style="margin-right:50px"
       >
-        <el-form-item prop="interventionId" label="干预对象ID">
+        <el-form-item prop="interventionId" label="干预对象ID" style="display:none">
           <el-input v-model="interventionInfo.interventionId" disabled/>
         </el-form-item>
-        <el-form-item prop="interventionistId" label="干预师ID">
+        <el-form-item prop="interventionistId" label="干预师ID" style="display:none">
           <el-input v-model="interventionInfo.interventionistId" disabled/>
+        </el-form-item>
+        <el-form-item prop="interventionistId" label="干预对象" style="text-align:left">
+          <span>{{relateInfo.realName}}</span>
+        </el-form-item>
+        <el-form-item prop="interventionistId" label="干预师" style="text-align:left">
+          <span>{{$store.state.user.realName}}</span>
         </el-form-item>
         <el-form-item prop="state" label="干预状态">
           <el-select v-model="interventionInfo.state" placeholder="请选择" style="float:left">
@@ -162,11 +168,17 @@
         label-width="140px"
         style="margin-right:50px"
       >
-        <el-form-item prop="interventionId" label="干预对象ID">
+        <el-form-item prop="interventionId" label="干预对象ID" style="display:none">
           <el-input v-model="tmpInterventionInfo.interventionId" disabled/>
         </el-form-item>
-        <el-form-item prop="interventionistId" label="干预师ID">
+        <el-form-item prop="interventionistId" label="干预师ID" style="display:none">
           <el-input v-model="tmpInterventionInfo.interventionistId" disabled/>
+        </el-form-item>
+        <el-form-item prop="interventionistId" label="干预对象" style="text-align:left">
+          <span>{{relateInfo.realName}}</span>
+        </el-form-item>
+        <el-form-item prop="interventionistId" label="干预师" style="text-align:left">
+          <span>{{$store.state.user.realName}}</span>
         </el-form-item>
         <el-form-item prop="state" label="干预状态">
           <el-select v-model="tmpInterventionInfo.state" placeholder="请选择" style="float:left">
@@ -244,6 +256,22 @@ export default {
     },
     formatDate
   },
+  watch: {
+    interventionList: {
+      handler(nv, ov) {
+        if (ov.length !== 0 && nv) {
+          if (nv.length > ov.length && this.$store.state.user.type === '3') {
+            // debugger
+            this.$notify({
+              title: '提示',
+              message: '有新的干预报告',
+              type: 'success'
+            })
+          }
+        }
+      }
+    }
+  },
   created() {
     if (!this.$store.state.user.isLogin) {
       this.$message({
@@ -256,6 +284,15 @@ export default {
       this.relateInfo = this.$route.query.info
     }
     this.getInterventionList()
+    if (this.$store.state.user.type === '3') {
+      const intervalNum = setInterval(() => {
+        this.getInterventionList()
+      }, 5000)
+      this.$once('hook:beforeDestroy', () => {
+        clearInterval(intervalNum)
+      })
+    }
+
     const data = {
       interventionId: this.relateInfo.uuid,
       interventionistId: this.$store.state.user.uuid
