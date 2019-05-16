@@ -4,14 +4,14 @@
       <Nav v-if="$route.meta.isNavShow"></Nav>
     </transition>
     <div style="height:100vh;min-width:1400px">
-      <!-- <el-scrollbar style="height:100%;"> -->
+      <el-scrollbar style="height:100%;">
         <transition name="fade" mode="out-in" appear>
           <router-view :class="{topBlank:$route.meta.isNavShow}"/>
         </transition>
         <transition name="fade" mode="out-in" appear>
           <my-foot v-if="$route.meta.isNavShow"></my-foot>
         </transition>
-      <!-- </el-scrollbar> -->
+      </el-scrollbar>
     </div>
     <div class="efont bgfun">You are not Alone</div>
   </div>
