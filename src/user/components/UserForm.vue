@@ -86,7 +86,7 @@
         <span>{{userData.uuid}}</span>
       </el-form-item>
       <el-form-item prop="type" label="用户类型：" class="formItem">
-        <span>{{userData.type | filterByDic(userDic)}}</span>
+        <span>{{filterByDic(userData.type,userDic)}}</span>
       </el-form-item>
       <div v-if="userData.type === '4'">
         <el-form-item prop="deptId" label="所属机构：" class="formItem">
@@ -112,10 +112,10 @@
         <span>{{userData.realName}}</span>
       </el-form-item>
       <el-form-item prop="sex" label="性别：" class="formItem">
-        <span>{{userData.sex | filterByDic(sexDic)}}</span>
+        <span>{{ filterByDic(userData.sex,sexDic)}}</span>
       </el-form-item>
       <el-form-item v-if="userData.nation" prop="nation" label="民族：" class="formItem">
-        <span>{{userData.nation |filterByDic(nationDic)}}</span>
+        <span>{{filterByDic(userData.nation,nationDic)}}</span>
       </el-form-item>
       <el-form-item v-if="userData.address" prop="address" label="地址：" class="formItem">
         <span>{{userData.address}}</span>
@@ -159,12 +159,6 @@ export default {
     }
   },
   filters: {
-    filterByDic(val, dic) {
-      // debugger
-      if (val && dic) {
-        return dic.find(e => e.value === val).label
-      }
-    }
   },
   watch: {
   },
@@ -178,6 +172,9 @@ export default {
     }
   },
   methods: {
+    filterByDic(val, dic) {
+      return val === '0' ? '-' : dic.find(e => e.value === val).label
+    },
     updateInfo() {
       const vm = this
       this.$confirm('确认提交当前修改资料？', '提示', {

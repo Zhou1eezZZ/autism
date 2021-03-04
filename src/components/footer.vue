@@ -1,6 +1,6 @@
 <template>
     <div class="outer efont">
-        <p>©2019 Autism</p>
+        <p>©2019 启明星</p>
         <p>built with love by 🥜🦄</p>
     </div>
 </template>

@@ -54,12 +54,13 @@ export default {
   created() {
     const vm = this
     fetchNews().then(response => {
+      const {result} = response.data
       if (
         response.status === 200 &&
-        response.data.msg === 'ok' &&
-        response.data.result.list
+        result.msg === 'ok' &&
+        result.result.list
       ) {
-        vm.newsList = response.data.result.list
+        vm.newsList = result.result.list
         vm.$message({
           showClose: true,
           type: 'success',

@@ -106,10 +106,10 @@ export default {
     //
   },
   created() {
-    this.$store.commit('user/SET_IP', returnCitySN['cip'])// 通过引入的搜狐js代码片段获取用户的ip
-    this.$store.dispatch('weather/setWeather', this.$store.state.user.ip).then(() => {
-      console.log('天气加载成功')
-    })
+    // this.$store.commit('user/SET_IP', returnCitySN['cip'])// 通过引入的搜狐js代码片段获取用户的ip
+    // this.$store.dispatch('weather/setWeather', this.$store.state.user.ip).then(() => {
+    //   console.log('天气加载成功')
+    // })
   },
   methods: {
     signIn() {

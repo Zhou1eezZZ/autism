@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-const appKey = '14ec61db9c451f22'
+const appKey = 'fb03e8f764d7a1518199eae6a99092a5'
 export function fetchNews() {
   return request({
-    url: '/api/news/search',
+    url: '/api/jisuapi/newSearch',
     method: 'get',
     params: {
       appkey: appKey,

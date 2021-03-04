@@ -2,7 +2,7 @@
   <el-row type="flex" justify="space-between" align="middle" style="height:100vh">
     <el-col :span="4"></el-col>
     <el-col :span="6">
-      <h1 class="logo efont">AUTISM</h1>
+      <h1 class="logo efont">启明星</h1>
       <el-form ref="signInData" :rules="rules" :model="data">
         <el-form-item prop="phone">
           <el-input

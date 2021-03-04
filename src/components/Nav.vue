@@ -1,7 +1,7 @@
 <template>
   <el-row type="flex" justify="space-between" align="middle" class="navFix">
     <el-col :span="4">
-      <h1 class="logo efontBold">AUTISM</h1>
+      <h1 class="logo efontBold">启明星</h1>
     </el-col>
     <el-col :span="14">
       <transition name="fade" mode="out-in" appear>
@@ -23,7 +23,7 @@
           <span class="efont">Games</span>
         </router-link>
       </ul>
-      <section v-if="$route.meta.isCenter">
+      <!-- <section v-if="$route.meta.isCenter">
         <div style="font-size:1.6rem;">
           <i class="el-icon-location-outline" style="color:#409eff"></i>
           <span style="color:#409eff">{{$store.state.weather.city}}&nbsp;&nbsp;</span>
@@ -34,7 +34,7 @@
           <span>{{$store.state.weather.date}}&nbsp;&nbsp;</span>
           <span>{{$store.state.weather.week}}</span>
         </div>
-      </section>
+      </section> -->
       </transition>
     </el-col>
     <el-col :span="4">
@@ -48,14 +48,14 @@
         <el-dropdown>
           <span class="link-type">{{$store.state.user.name}}</span>▾
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-if="!$route.meta.isCenter" disabled>
+            <!-- <el-dropdown-item v-if="!$route.meta.isCenter" disabled>
               <i class="el-icon-location-outline" style="color:#409eff"></i>
               <span>{{$store.state.weather.city}}</span>
               <br>
               <img v-if="weatherIconSrc.length>10" :src="weatherIconSrc" style="width:1.4rem;height:1.4rem">
               <span v-else>{{weatherIconSrc}}</span>
               <span>{{$store.state.weather.temp}}°C</span>
-            </el-dropdown-item>
+            </el-dropdown-item> -->
             <el-dropdown-item v-if="!($route.path==='/')" @click.native="$router.push({path:'/'})">返回首页</el-dropdown-item>
             <el-dropdown-item
               v-if="!($route.path==='/UserCenter')"
